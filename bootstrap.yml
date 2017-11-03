@@ -1,0 +1,42 @@
+---
+
+
+- name: bootstrap
+  hosts: all
+  become: yes
+  gather_facts: false
+
+
+  tasks:
+    - name: include variables needed by provisioner scripts
+      include_vars: vars.yml
+
+    - name: install latest version of a series of packages
+      package:
+        name: "{{ item }}"
+        state: latest
+      with_items: "{{ basic_packages }}"
+
+    - name: Easy_install pip
+      easy_install:
+        name: pip
+        state: latest
+
+    - name: pip install
+      pip:
+        name: "{{ item }}"
+        state: latest
+      with_items: "{{ pip_packages }}"
+
+
+    - group:
+       name: admin
+       state: present
+
+    - user:
+       name: combine
+       comment: "Combine User"
+       groups: admin
+       shell: /bin/bash
+       password: "{{ combine_password }}"
+       update_password: always

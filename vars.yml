@@ -1,0 +1,24 @@
+---
+
+combine_password: combine
+
+basic_packages:
+  - openssh-server
+  - build-essential
+  - unzip
+  - libxml2-dev
+  - libxslt1-dev
+  - python-dev
+  - python-setuptools
+  - zlib1g-dev
+  - git
+  - vim
+  - wget
+  - curl
+  - htop
+  - tree
+  - ncdu
+
+pip_packages:
+  - jupyter
+  - setuptools

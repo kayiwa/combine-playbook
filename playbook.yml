@@ -1,0 +1,6 @@
+---
+
+- hosts: all
+
+- import_playbook: update-upgrade.yml
+- import_playbook: bootstrap.yml
