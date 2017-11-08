@@ -2,6 +2,8 @@
 
 combine_password: combine
 
+mysql_password: mybadpassword
+
 basic_packages:
   - openssh-server
   - build-essential
@@ -18,6 +20,8 @@ basic_packages:
   - htop
   - tree
   - ncdu
+  - mysql-server
+  - libmysqlclient-dev
 
 pip_packages:
   - jupyter
