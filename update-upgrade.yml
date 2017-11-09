@@ -20,7 +20,7 @@
 
     # This task updates servers that use 'apt' and DEB packages
     # by looking for Debian or Ubuntu as a distribution name.
-    - name: .deb do dist-upgrade
+    - name: .deb do update and upgrade
       apt: >
         update_cache=yes
         cache_valid_time=1200
