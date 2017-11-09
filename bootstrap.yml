@@ -11,25 +11,29 @@
     - name: include variables needed by provisioner scripts
       include_vars: vars.yml
 
-    - name: Set MySQL password
-      debconf:
-        name='mysql-server'
-        question='mysql-server/root_password'
-        value='{{mysql_password | quote}}'
-        vtype='password'
-
-    - name: Confirm MySQL password
-      debconf:
-        name='mysql-server'
-        question='mysql-server/root_password_again'
-        value='{{mysql_password | quote}}'
-        vtype='password'
-
     - name: install latest version of a series of packages
       package:
         name: "{{ item }}"
         state: latest
       with_items: "{{ basic_packages }}"
+
+    - name: Set MySQL root password
+      mysql_user: name=root host={{ item }} password={{ mysql_password }} state=present
+      with_items:
+        - "{{ ansible_hostname }}"
+        - 127.0.0.1
+        - ::1
+        - localhost
+
+    - name: Copy the root credentials as .my.cnf file
+      template: 
+        src: root.cnf
+        dest: /root/.my.cnf
+        owner: root
+        mode: 0600
+
+    - name: Restart MySQL
+      action: service name=mysql state=restarted enabled=true
 
     - name: Easy_install pip
       easy_install:
