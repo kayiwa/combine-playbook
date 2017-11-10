@@ -4,3 +4,4 @@
 
 - import_playbook: update-upgrade.yml
 - import_playbook: bootstrap.yml
+- import_playbook: apache.yml

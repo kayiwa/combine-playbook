@@ -1,0 +1,45 @@
+---
+
+
+- name: apache
+  hosts: all
+  become: yes
+  gather_facts: false
+
+
+  tasks:
+    - name: include variables needed by provisioner scripts
+      include_vars: vars.yml
+
+    - name: install latest version of Apache HTTP server
+      package:
+        name: "{{ package }}"
+        state: latest
+        update_cache: yes
+      with_items: "{{ apache_packages }}"
+
+
+    - name: Set servername
+      lineinfile:
+        path: /etc/apache2/conf-available/servername.conf
+        line: "ServerName localhost"
+        state: present
+        create: yes
+
+    - name: Override servername conf
+      command: a2enconf servername
+      notify: reload apache
+
+
+    - name: Check for needed Apache modules
+      apache2_module:
+        state: present
+        name: "{{ module }}"
+        state: present
+      notify: reload apache
+      with_items: "{{ apache_modules }}"
+
+  handlers:
+    - name: reload apache
+      service: name=apache2 state=reloaded
+
