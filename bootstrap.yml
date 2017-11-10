@@ -25,15 +25,22 @@
         - ::1
         - localhost
 
+    - name: Are root credentials for MySQL already there?
+      stat: path=/root/.my.cnf
+      register: mysql_config
+      changed_when: mysql_config.stat.exists == False
+
     - name: Copy the root credentials as .my.cnf file
       template: 
         src: root.cnf
         dest: /root/.my.cnf
         owner: root
         mode: 0600
+      when: mysql_config.stat.exists == False
 
     - name: Restart MySQL
       action: service name=mysql state=restarted enabled=true
+      when: mysql_config.stat.exists == False
 
     - name: Easy_install pip
       easy_install:
@@ -73,9 +80,8 @@
       when: conda_package.stat.exists == False
 
     - name: Install miniconda
-      shell: miniconda.sh -b -p /opt/miniconda
+      shell: /tmp/miniconda.sh -b -p /opt/miniconda
       args:
-        chdir: /tmp/
         creates: /opt/miniconda
         executable: /bin/bash
       register: install_mc
@@ -89,6 +95,7 @@
         source activate combine
       args:
         creates: /opt/miniconda/envs/combine
+        executable: /bin/bash
       environment:
         PATH: /opt/miniconda/bin:$PATH
       register: configure_mc
