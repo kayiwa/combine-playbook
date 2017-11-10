@@ -62,7 +62,7 @@
        comment: "Combine User"
        groups: admin
        shell: /bin/bash
-       password: "{{ combine_password }}"
+       password: "{{ combine_password | password_hash('sha512') }}"
        update_password: always
 
 
