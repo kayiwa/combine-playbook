@@ -66,26 +66,11 @@
        update_password: on_create
 
 
-    - name: Is miniconda installed already
-      stat: path=/opt/miniconda/bin/conda
+    - name: Is miniconda installed already?
+      stat: path=/usr/local/miniconda/bin/conda
       register: conda_package
       changed_when: conda_package.stat.exists == False
 
-    - name: Download miniconda
-      get_url:
-        url=https://repo.continuum.io/miniconda/Miniconda2-4.3.21-Linux-x86_64.sh
-        dest=/tmp/miniconda.sh
-        mode=0755
-      register: download_mc
-      when: conda_package.stat.exists == False
-
-    - name: Install miniconda
-      shell: /tmp/miniconda.sh -b -p /opt/miniconda
-      args:
-        creates: /opt/miniconda
-        executable: /bin/bash
-      register: install_mc
-      when: download_mc | success
 
     - name: Configure miniconda
       shell: |
@@ -99,7 +84,7 @@
       environment:
         PATH: /opt/miniconda/bin:$PATH
       register: configure_mc
-      when: install_mc | success
+      when: conda_package.stat.exists == True
 
     - name: Let combine user use conda commands
       lineinfile:

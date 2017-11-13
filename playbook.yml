@@ -6,6 +6,7 @@
   roles:
     - geerlingguy.java
     - geerlingguy.elasticsearch
+    - andrewrothstein.miniconda
 
 - import_playbook: update-upgrade.yml
 - import_playbook: bootstrap.yml
