@@ -13,11 +13,10 @@
 
     - name: install latest version of Apache HTTP server
       package:
-        name: "{{ package }}"
+        name: "{{ item }}"
         state: latest
         update_cache: yes
       with_items: "{{ apache_packages }}"
-
 
     - name: Set servername
       lineinfile:
@@ -30,14 +29,22 @@
       command: a2enconf servername
       notify: reload apache
 
-
     - name: Check for needed Apache modules
       apache2_module:
-        state: present
-        name: "{{ module }}"
+        name: "{{ item }}"
         state: present
       notify: reload apache
       with_items: "{{ apache_modules }}"
+
+    # PLACHOLDER for adding in a custom Apache Vhost to handle reverse proxying etc
+
+    # PLACEHOLDER for ports.conf configuration
+
+    # PLACEHOLDER for /etc/hosts file
+
+    # PLACEHOLDER for SSL certs
+
+    # PLACEHOLDER for /etc/hostname file
 
   handlers:
     - name: reload apache

@@ -35,7 +35,6 @@ apache_packages:
 
 apache_modules:
   - cache
-  - cgi
   - cache_disk
   - expires
   - headers
