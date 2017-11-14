@@ -4,9 +4,12 @@
 - name: elasticsearch
   hosts: all
   become: yes
-  gather_facts: false
+  gather_facts: true
 
   tasks:
+
+    - import_role:
+        name: elasticsearch
 
     - name: Copy elasticsearch yml (config) file to ES instance
       template: 
