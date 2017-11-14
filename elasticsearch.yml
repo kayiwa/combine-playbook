@@ -1,0 +1,25 @@
+---
+
+
+- name: elasticsearch
+  hosts: all
+  become: yes
+  gather_facts: false
+
+  tasks:
+
+    - name: Copy elasticsearch yml (config) file to ES instance
+      template: 
+        src: elasticsearch.yml
+        dest: /etc/elasticsearch/elasticsearch.yml
+
+
+    - name: Copy elasticsearch JVM options to ES instance
+      template: 
+        src: jvm.options
+        dest: /etc/elasticsearch/jvm.options
+      notify: restart elasticsearch
+
+  handlers:
+    - name: restart elasticsearch
+      service: name=elasticsearch state=restarted
