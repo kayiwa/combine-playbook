@@ -2,7 +2,7 @@
 
 combine_password: combine
 
-mysql_password: mybadpassword
+mysql_password: combine
 
 basic_packages:
   - openssh-server
