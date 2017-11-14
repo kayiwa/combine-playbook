@@ -4,7 +4,6 @@
 - name: bootstrap
   hosts: all
   become: yes
-  gather_facts: false
 
 
   tasks:
@@ -64,10 +63,12 @@
        shell: /bin/bash
        password: "{{ combine_password | password_hash('sha512') }}"
        update_password: on_create
-
+    
+    - import_role:
+        name: miniconda
 
     - name: Is miniconda installed already?
-      stat: path=/usr/local/miniconda/bin/conda
+      stat: path=/usr/local/anaconda/bin/conda
       register: conda_package
       changed_when: conda_package.stat.exists == False
 
@@ -79,15 +80,15 @@
         conda create -n combine python=3.5
         source activate combine
       args:
-        creates: /opt/miniconda/envs/combine
+        creates: /usr/local/anaconda/envs/combine
         executable: /bin/bash
       environment:
-        PATH: /opt/miniconda/bin:$PATH
+        PATH: /usr/local/anaconda/bin:$PATH
       register: configure_mc
-      when: conda_package.stat.exists == True
+      when: conda_package.stat.exists == False
 
     - name: Let combine user use conda commands
       lineinfile:
         path: /home/combine/.bashrc
-        line: "export PATH=/opt/miniconda/bin:$PATH"
+        line: "export PATH=/usr/local/anaconda/bin:$PATH"
         state: present
