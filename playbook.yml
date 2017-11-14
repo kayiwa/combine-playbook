@@ -3,12 +3,6 @@
 - hosts: all
   become: yes
 
-  roles:
-    - geerlingguy.java
-    - geerlingguy.elasticsearch
-    - andrewrothstein.miniconda
-    - andrewrothstein.spark
-
 - import_playbook: update-upgrade.yml
 - import_playbook: bootstrap.yml
 - import_playbook: apache.yml
