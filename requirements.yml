@@ -1,3 +1,11 @@
 - src: geerlingguy.java
+
 - src: geerlingguy.elasticsearch
+  name: elasticsearch
+  version: 2.1.3
+
 - src: andrewrothstein.miniconda
+  name: miniconda
+
+- src: andrewrothstein.spark
+  name: spark
