@@ -1,0 +1,23 @@
+---
+
+
+- name: spark
+  hosts: all
+  become: yes
+  gather_facts: false
+
+  tasks:
+
+  - import_role:
+      name: spark
+
+  - name: Copy Spark settings
+    template: 
+      src: spark-defaults.conf
+      dest: /usr/local/spark/conf/spark-defaults.conf
+
+  - name: Let combine user use spark commands
+    lineinfile:
+      path: /home/combine/.bashrc
+      line: "export SPARK_HOME=/opt/spark"
+      state: present
