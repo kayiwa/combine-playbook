@@ -4,6 +4,8 @@ combine_password: combine
 
 mysql_password: combine
 
+spark_version: 2.0.1
+
 basic_packages:
   - openssh-server
   - build-essential
