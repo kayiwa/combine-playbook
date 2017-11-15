@@ -28,7 +28,8 @@
         - localhost
 
     - name: Are root credentials for MySQL already there?
-      stat: path=/root/.my.cnf
+      stat:
+        path: /root/.my.cnf
       register: mysql_config
       changed_when: mysql_config.stat.exists == False
 
