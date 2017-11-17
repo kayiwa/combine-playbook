@@ -25,6 +25,7 @@ basic_packages:
   - mysql-server
   - libmysqlclient-dev
   - python-mysqldb
+  - bc
 
 pip_packages:
   - jupyter
