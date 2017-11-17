@@ -6,6 +6,12 @@ mysql_password: combine
 
 spark_version: 2.0.1
 
+livy_version: 0.3.0
+
+scala_version: 2.11
+
+hadoop_prefix: /opt/hadoop
+
 basic_packages:
   - openssh-server
   - build-essential
@@ -26,6 +32,7 @@ basic_packages:
   - libmysqlclient-dev
   - python-mysqldb
   - bc
+  - maven
 
 pip_packages:
   - jupyter
