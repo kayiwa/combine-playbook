@@ -8,3 +8,6 @@
 - import_playbook: java.yml
 - import_playbook: apache.yml
 - import_playbook: elasticsearch.yml
+- import_playbook: spark.yml
+- import_playbook: livy.yml
+- import_playbook: hadoop.yml
