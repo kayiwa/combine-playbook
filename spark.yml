@@ -24,15 +24,15 @@
         state: present
         update_cache: yes
 
-    # - name: Install latest version of sbt
-    #   package:
-    #     name: sbt
-    #     state: latest
+    - name: Update Apt cache
+      apt:
+        update_cache: yes
 
-    # - import_role:
-    #     name: spark
+    - name: Install latest version of sbt
+      package:
+        name: sbt
+        state: latest
 
-    # 
     - name: Is Spark already installed?
       stat: 
         path: /opt/spark/bin/pyspark
@@ -41,7 +41,7 @@
 
     - name: Download Spark
       get_url: 
-        url: "https://d3kbcqa49mib13.cloudfront.net/spark-{{ spark_version }}-bin-hadoop2.7.tgz"
+        url: "https://d3kbcqa49mib13.cloudfront.net/spark-{{ spark_version }}-bin-hadoop{{ hadoop_version_short }}.tgz"
         dest: /tmp/spark.tgz
         mode: 0775
       when: spark_installed.stat.exists == False
@@ -49,8 +49,15 @@
     - name: Unpackage Spark
       unarchive:
         src: /tmp/spark.tgz
-        dest: /opt
+        dest: /tmp
+        remote_src: yes
+      when: spark_installed.stat.exists == False
+
+    - name: Move Spark to correct directory
+      command: mv /tmp/spark-{{ spark_version }}-bin-hadoop{{ hadoop_version_short }} /opt/spark
+      args:
         creates: /opt/spark
+        removes: /tmp/spark-{{ spark_version }}-bin-hadoop{{ hadoop_version_short }}
       when: spark_installed.stat.exists == False
 
     - name: Copy Spark settings
