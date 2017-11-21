@@ -1,5 +1,3 @@
-- src: geerlingguy.java
-
 - src: geerlingguy.elasticsearch
   name: elasticsearch
   version: 2.1.3

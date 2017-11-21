@@ -36,6 +36,7 @@ basic_packages:
   - bc
   - maven
   - zip
+  - python-software-properties
 
 pip_packages:
   - jupyter
@@ -58,3 +59,7 @@ apache_modules:
   - reqtimeout
   - rewrite
   - ssl
+
+java_packages:
+  - oracle-java8-installer
+  - oracle-java8-set-default

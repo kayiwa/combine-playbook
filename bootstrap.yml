@@ -7,8 +7,6 @@
 
 
   tasks:
-    -  import_role:
-        name: geerlingguy.java
 
     - name: include variables needed by provisioner scripts
       include_vars: vars.yml
