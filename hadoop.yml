@@ -83,19 +83,25 @@
 
     - name: Start HDFS daemons; Format the namenode directory (DO THIS ONLY ONCE, THE FIRST TIME)
       shell: "{{ hadoop_prefix }}/bin/hdfs namenode -format"
+      args:
+        executable: /bin/bash
       when: hadoop_installed.stat.exists == False
 
     - name: Re-establish permissions
       shell: chown -R combine:combine /opt/hadoop
+      args:
+        executable: /bin/bash
       when: hadoop_installed.stat.exists == False
 
     - name: setup Elasticsearch-Hadoop connector
       shell: chown -R combine:combine /opt/hadoop
+      args:
+        executable: /bin/bash
       when: hadoop_installed.stat.exists == False
 
     - name: Download Hadoop-Elasticsearch Connector
       get_url: 
-        url: "http://download.elastic.co/hadoop/elasticsearch-hadoop-5.6.2.zip"
+        url: "http://download.elastic.co/hadoop/elasticsearch-hadoop-{{ elasticsearch_hadoop_connector_version }}.zip"
         dest: /tmp/hadoop-es.zip
       when: hadoop_installed.stat.exists == False
 
@@ -103,12 +109,19 @@
       unarchive:
         src: /tmp/hadoop-es.zip
         dest: /tmp
-        creates: /tmp/hadoop-es
+        remote_src: yes
+      when: hadoop_installed.stat.exists == False
+
+    - name: Create a directory if it doesn't exist
+      file:
+        path: /opt/elasticsearch-hadoop-{{ elasticsearch_hadoop_connector_version }}/dist
+        state: directory
+        mode: 0755
       when: hadoop_installed.stat.exists == False
 
     - name: Copy Hadoop-Elasticsearch Jar file
       copy:
-        src: /tmp/hadoop-es/dist/elasticsearch-hadoop-5.6.2.jar
-        dest: /opt/elasticsearch-hadoop-5.6.2/dist/elasticsearch-hadoop-5.6.2.jar
-        creates: /opt/elasticsearch-hadoop-5.6.2/dist
+        src: /tmp/elasticsearch-hadoop-{{ elasticsearch_hadoop_connector_version }}/dist/elasticsearch-hadoop-{{ elasticsearch_hadoop_connector_version }}.jar
+        dest: /opt/elasticsearch-hadoop-{{ elasticsearch_hadoop_connector_version }}/dist/elasticsearch-hadoop-{{ elasticsearch_hadoop_connector_version }}.jar
+        remote_src: yes
       when: hadoop_installed.stat.exists == False
