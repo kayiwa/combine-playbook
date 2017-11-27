@@ -9,5 +9,8 @@
 - import_playbook: apache.yml
 - import_playbook: elasticsearch.yml
 - import_playbook: spark.yml
+- import_playbook: ingestion3.yml
 - import_playbook: livy.yml
 - import_playbook: hadoop.yml
+- import_playbook: supervisor.yml
+- import_playbook: combine.yml
