@@ -17,8 +17,7 @@ Ansible playbook for deploying combine application to remote server.
    cat ~/.ssh/id_rsa.pub | ssh USERNAME@IP_ADDRESS_OR_FQDN "mkdir -p ~/.ssh && cat >>  ~/.ssh/authorized_keys"
    ```
 
- * Point ansible to remote server
-   Create /etc/ansible/hosts and place the IP address or FQDN in this file. See: http://docs.ansible.com/ansible/latest/intro_getting_started.html#your-first-commands
+ * Point ansible to remote server. Create /etc/ansible/hosts and place the IP address or FQDN in this file. See: http://docs.ansible.com/ansible/latest/intro_getting_started.html#your-first-commands
 
  * Clone the Github repository
 
