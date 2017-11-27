@@ -31,21 +31,20 @@
         remote_src: yes
       when: combine_installed.stat.exists == False
 
-    - name: Install Livy Client
-      shell: |
-        source activate combine
-        cd /opt/livy/python-api
-        python setup.py install
-      args:
-        executable: /bin/bash
-      environment:
-        PATH: /usr/local/anaconda/bin:$PATH
-      when: combine_installed.stat.exists == False
-
     - name: install latest version of libkrb5-dev
       package:
         name: libkrb5-dev
         state: latest
+      when: combine_installed.stat.exists == False
+
+    - name: Install Livy Client
+      become_user: combine
+      shell: |
+        source /usr/local/anaconda/bin/activate combine
+        cd /opt/livy/python-api
+        python setup.py install
+      args:
+        executable: /bin/bash
       when: combine_installed.stat.exists == False
 
     - name: Install combine mysql dependency
@@ -55,14 +54,13 @@
       when: combine_installed.stat.exists == False
 
     - name: Install Combine requirements
+      become_user: combine
       shell: |
-        source activate combine
+        source /usr/local/anaconda/bin/activate combine
         cd /opt/combine
         pip install -r requirements.txt
       args:
         executable: /bin/bash
-      environment:
-        PATH: /usr/local/anaconda/bin:$PATH
       when: combine_installed.stat.exists == False
 
     - name: Copy the combine.sql file to tmp
@@ -80,14 +78,14 @@
       when: combine_installed.stat.exists == False
 
     - name: Run Database migrations
+      become_user: combine
       shell: |
+        source /usr/local/anaconda/bin/activate combine
         python /opt/combine/manage.py makemigrations core
         python /opt/combine/manage.py migrate core
         python /opt/combine/manage.py migrate
       args:
         executable: /bin/bash
-      environment:
-        PATH: /usr/local/anaconda/bin:$PATH
       when: combine_installed.stat.exists == False
 
     - name: Manually create additional tables from sql script, not managed by Django
