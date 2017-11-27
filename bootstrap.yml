@@ -77,17 +77,16 @@
 
     - name: Configure miniconda
       shell: |
-        conda config --set always_yes yes
-        conda config --add channels conda-forge
-        conda create -n combine python=3.5
-        source activate combine
+        /usr/local/anaconda/bin/conda config --set always_yes yes
+        /usr/local/anaconda/bin/conda config --add channels conda-forge
+        /usr/local/anaconda/bin/conda create -n combine python=3.5
+        chown -R combine:combine /usr/local/anaconda/envs/combine
+        source /usr/local/anaconda/bin/activate combine
       args:
         creates: /usr/local/anaconda/envs/combine
         executable: /bin/bash
-      environment:
-        PATH: /usr/local/anaconda/bin:$PATH
       register: configure_mc
-      when: conda_package.stat.exists == False
+      # when: conda_package.stat.exists == False
 
     - name: Let combine user use conda commands
       lineinfile:
