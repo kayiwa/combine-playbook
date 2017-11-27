@@ -69,13 +69,13 @@
         dest: /tmp/combine.sql
       when: combine_installed.stat.exists == False
 
-    - name: Prepare Combine Database
-      mysql_db:
-        config_file: /root/.my.cnf
-        state: import
-        name: all
-        target: /tmp/combine.sql
-      when: combine_installed.stat.exists == False
+    # - name: Prepare Combine Database
+    #   mysql_db:
+    #     config_file: /root/.my.cnf
+    #     state: import
+    #     name: all
+    #     target: /tmp/combine.sql
+    #   when: combine_installed.stat.exists == False
 
     - name: Run Database migrations
       become_user: combine
@@ -97,4 +97,27 @@
       when: combine_installed.stat.exists == False
 
 
+    - name: Create superuser
+      shell: |
+        echo "from django.contrib.auth.models import User; User.objects.create_superuser('combine', '{{ root@none.com }}', '{{ mysql_password }}')" | python /opt/combine/manage.py shell
+      args:
+        executable: /bin/bash
+      when: combine_installed.stat.exists == False
 
+
+    - name: Make directory that will hold avro files
+      file:
+        path: /home/combine/data/combine
+        owner: combine
+        group: combine
+        mode: 0755
+        recurse: yes
+        state: directory
+      when: combine_installed.stat.exists == False
+
+    - name: Set permissions
+      shell: |
+        chown -R combine:combine /opt/combine
+      args:
+        executable: /bin/bash
+      when: combine_installed.stat.exists == False
