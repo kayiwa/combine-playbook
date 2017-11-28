@@ -69,13 +69,13 @@
         dest: /tmp/combine.sql
       when: combine_installed.stat.exists == False
 
-    # - name: Prepare Combine Database
-    #   mysql_db:
-    #     config_file: /root/.my.cnf
-    #     state: import
-    #     name: all
-    #     target: /tmp/combine.sql
-    #   when: combine_installed.stat.exists == False
+    - name: Prepare Combine Database
+      mysql_db:
+        config_file: /root/.my.cnf
+        state: import
+        name: all
+        target: /tmp/combine.sql
+      when: combine_installed.stat.exists == False
 
     - name: Run Database migrations
       become_user: combine
