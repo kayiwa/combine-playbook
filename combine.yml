@@ -11,97 +11,97 @@
     - name: include variables needed by provisioner scripts
       include_vars: vars.yml
 
-    # - name: Is Combine already installed?
-    #   stat: 
-    #     path: /opt/combine
-    #   register: combine_installed
-    #   changed_when: combine_installed.stat.exists == False
+    - name: Is Combine already installed?
+      stat: 
+        path: /opt/combine
+      register: combine_installed
+      changed_when: combine_installed.stat.exists == False
 
-    # - name: Clone Combine Github repository
-    #   git:
-    #     repo: https://github.com/WSULib/combine.git
-    #     dest: /opt/combine
-    #     version: dev
-    #   when: combine_installed.stat.exists == False
+    - name: Clone Combine Github repository
+      git:
+        repo: https://github.com/WSULib/combine.git
+        dest: /opt/combine
+        version: dev
+      when: combine_installed.stat.exists == False
 
-    # - name: Copy localsettings
-    #   copy:
-    #     src: /opt/combine/combine/localsettings.py.template
-    #     dest: /opt/combine/combine/localsettings.py
-    #     remote_src: yes
-    #   when: combine_installed.stat.exists == False
+    - name: Copy localsettings
+      copy:
+        src: /opt/combine/combine/localsettings.py.template
+        dest: /opt/combine/combine/localsettings.py
+        remote_src: yes
+      when: combine_installed.stat.exists == False
 
-    # - name: Set permissions
-    #   shell: |
-    #     chown -R combine:combine /opt/combine
-    #   args:
-    #     executable: /bin/bash
-    #   when: combine_installed.stat.exists == False
+    - name: Set permissions
+      shell: |
+        chown -R combine:combine /opt/combine
+      args:
+        executable: /bin/bash
+      when: combine_installed.stat.exists == False
 
-    # - name: install latest version of libkrb5-dev
-    #   package:
-    #     name: libkrb5-dev
-    #     state: latest
-    #   when: combine_installed.stat.exists == False
+    - name: install latest version of libkrb5-dev
+      package:
+        name: libkrb5-dev
+        state: latest
+      when: combine_installed.stat.exists == False
 
-    # - name: Install Livy Client
-    #   become_user: combine
-    #   shell: |
-    #     source /usr/local/anaconda/bin/activate combine
-    #     cd /opt/livy/python-api
-    #     python setup.py install
-    #   args:
-    #     executable: /bin/bash
-    #   when: combine_installed.stat.exists == False
+    - name: Install Livy Client
+      become_user: combine
+      shell: |
+        source /usr/local/anaconda/bin/activate combine
+        cd /opt/livy/python-api
+        python setup.py install
+      args:
+        executable: /bin/bash
+      when: combine_installed.stat.exists == False
 
-    # - name: Install combine mysql dependency
-    #   package:
-    #     name: libmysql-java
-    #     state: latest
-    #   when: combine_installed.stat.exists == False
+    - name: Install combine mysql dependency
+      package:
+        name: libmysql-java
+        state: latest
+      when: combine_installed.stat.exists == False
 
-    # - name: Install Combine requirements
-    #   become_user: combine
-    #   shell: |
-    #     source /usr/local/anaconda/bin/activate combine
-    #     cd /opt/combine
-    #     pip install -r requirements.txt
-    #   args:
-    #     executable: /bin/bash
-    #   when: combine_installed.stat.exists == False
+    - name: Install Combine requirements
+      become_user: combine
+      shell: |
+        source /usr/local/anaconda/bin/activate combine
+        cd /opt/combine
+        pip install -r requirements.txt
+      args:
+        executable: /bin/bash
+      when: combine_installed.stat.exists == False
 
-    # - name: Copy the combine.sql file to tmp
-    #   template: 
-    #     src: combine.sql
-    #     dest: /tmp/combine.sql
-    #   when: combine_installed.stat.exists == False
+    - name: Copy the combine.sql file to tmp
+      template: 
+        src: combine.sql
+        dest: /tmp/combine.sql
+      when: combine_installed.stat.exists == False
 
-    # - name: Prepare Combine Database
-    #   mysql_db:
-    #     config_file: /root/.my.cnf
-    #     state: import
-    #     name: all
-    #     target: /tmp/combine.sql
-    #   when: combine_installed.stat.exists == False
+    - name: Prepare Combine Database
+      mysql_db:
+        config_file: /root/.my.cnf
+        state: import
+        name: all
+        target: /tmp/combine.sql
+      when: combine_installed.stat.exists == False
 
-    # - name: Run Database migrations
-    #   become_user: combine
-    #   shell: |
-    #     source /usr/local/anaconda/bin/activate combine
-    #     python /opt/combine/manage.py makemigrations core
-    #     python /opt/combine/manage.py migrate core
-    #     python /opt/combine/manage.py migrate
-    #   args:
-    #     executable: /bin/bash
-    #   when: combine_installed.stat.exists == False
+    - name: Run Database migrations
+      become_user: combine
+      shell: |
+        source /usr/local/anaconda/bin/activate combine
+        python /opt/combine/manage.py makemigrations core
+        python /opt/combine/manage.py migrate core
+        python /opt/combine/manage.py migrate
+      args:
+        executable: /bin/bash
+      when: combine_installed.stat.exists == False
 
-    # - name: Manually create additional tables from sql script, not managed by Django
-    #   mysql_db:
-    #     config_file: /root/.my.cnf
-    #     state: import
-    #     name: combine
-    #     target: /opt/combine/core/inc/combine_tables.sql
-    #   when: combine_installed.stat.exists == False
+    - name: Manually create additional tables from sql script, not managed by Django
+      mysql_db:
+        config_file: /root/.my.cnf
+        state: import
+        name: combine
+        target: /opt/combine/core/inc/combine_tables.sql
+      when: combine_installed.stat.exists == False
 
 
     - name: Create superuser
@@ -110,22 +110,22 @@
         echo "from django.contrib.auth.models import User; User.objects.create_superuser('combine'"," 'root@none.com'"," '{{ mysql_password }}')" | python /opt/combine/manage.py shell
       args:
         executable: /bin/bash
-      # when: combine_installed.stat.exists == False
+      when: combine_installed.stat.exists == False
 
 
-    # - name: Make directory that will hold avro files
-    #   file:
-    #     path: /home/combine/data/combine
-    #     owner: combine
-    #     group: combine
-    #     mode: 0755
-    #     recurse: yes
-    #     state: directory
-    #   when: combine_installed.stat.exists == False
+    - name: Make directory that will hold avro files
+      file:
+        path: /home/combine/data/combine
+        owner: combine
+        group: combine
+        mode: 0755
+        recurse: yes
+        state: directory
+      when: combine_installed.stat.exists == False
 
-    # - name: Set permissions
-    #   shell: |
-    #     chown -R combine:combine /opt/combine
-    #   args:
-    #     executable: /bin/bash
-    #   when: combine_installed.stat.exists == False
+    - name: Set permissions
+      shell: |
+        chown -R combine:combine /opt/combine
+      args:
+        executable: /bin/bash
+      when: combine_installed.stat.exists == False
