@@ -45,7 +45,7 @@
           HADOOP_HDFS_HOME={{ hadoop_prefix }}
           HADOOP_MAPRED_HOME={{ hadoop_prefix }}
           HADOOP_YARN_HOME={{ hadoop_prefix }}
-          PYSPARK_PYTHON=/opt/miniconda/envs/combine/bin/python
+          PYSPARK_PYTHON=/usr/local/anaconda/envs/combine/bin/python
           DJANGO_SETTINGS_MODULE=combine.settings
         
     - name: set configurations in livy-conf.sh
