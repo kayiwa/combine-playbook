@@ -31,6 +31,13 @@
         remote_src: yes
       when: combine_installed.stat.exists == False
 
+    - name: Set permissions
+      shell: |
+        chown -R combine:combine /opt/combine
+      args:
+        executable: /bin/bash
+      when: combine_installed.stat.exists == False
+
     - name: install latest version of libkrb5-dev
       package:
         name: libkrb5-dev
