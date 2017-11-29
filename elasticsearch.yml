@@ -6,16 +6,18 @@
   become: yes
   gather_facts: true
 
+  roles:
+    - { role: elasticsearch,
+      es_config: {
+          http.port: 9200,
+          transport.tcp.port: 9300,
+          network.host: 0.0.0.0,
+          }
+      }
+  vars:
+    es_instance_name: "combine"
+
   tasks:
-
-    - import_role:
-        name: elasticsearch
-
-    - name: Copy elasticsearch yml (config) file to ES instance
-      template: 
-        src: elasticsearch.yml
-        dest: /etc/elasticsearch/elasticsearch.yml
-
 
     - name: Copy elasticsearch JVM options to ES instance
       template: 
@@ -25,4 +27,4 @@
 
   handlers:
     - name: restart elasticsearch
-      service: name=elasticsearch state=restarted
+      service: name=combine_elasticsearch state=restarted
