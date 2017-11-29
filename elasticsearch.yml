@@ -7,24 +7,15 @@
   gather_facts: true
 
   roles:
+
     - { role: elasticsearch,
       es_config: {
-          http.port: 9200,
-          transport.tcp.port: 9300,
-          network.host: 0.0.0.0,
+          http.port: "{{ elasticsearch_http_port }}",
+          transport.tcp.port: "{{ elasticsearch_transport_tcp_port }}",
+          network.host: "{{ elasticsearch_network_host }}",
+          di
           }
       }
   vars:
-    es_instance_name: "combine"
-
-  tasks:
-
-    - name: Copy elasticsearch JVM options to ES instance
-      template: 
-        src: jvm.options
-        dest: /etc/elasticsearch/jvm.options
-      notify: restart elasticsearch
-
-  handlers:
-    - name: restart elasticsearch
-      service: name=combine_elasticsearch state=restarted
+    es_instance_name: "{{ elasticsearch_instance_name }}"
+    es_heap_size: "{{ elasticsearch_heap_size }}"
