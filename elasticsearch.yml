@@ -13,7 +13,6 @@
           http.port: "{{ elasticsearch_http_port }}",
           transport.tcp.port: "{{ elasticsearch_transport_tcp_port }}",
           network.host: "{{ elasticsearch_network_host }}",
-          di
           }
       }
   vars:
