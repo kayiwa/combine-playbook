@@ -8,9 +8,6 @@
 
   tasks:
 
-    - name: include variables needed by provisioner scripts
-      include_vars: vars.yml
-
     - name: Is Java 8 already installed?
       stat: 
         path: /usr/lib/jvm/java-8-oracle

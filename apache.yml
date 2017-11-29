@@ -8,8 +8,6 @@
 
 
   tasks:
-    - name: include variables needed by provisioner scripts
-      include_vars: vars.yml
 
     - name: install latest version of Apache HTTP server
       package:

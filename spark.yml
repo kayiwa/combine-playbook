@@ -8,9 +8,6 @@
 
   tasks:
 
-    - name: include variables needed by provisioner scripts
-      include_vars: vars.yml
-
     # Install Scala Build Tool (sbt)
     - name: Add an apt key by id from a keyserver
       apt_key:

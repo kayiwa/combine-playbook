@@ -8,9 +8,6 @@
 
   tasks:
 
-    - name: include variables needed by provisioner scripts
-      include_vars: vars.yml
-
     - name: Installing Livy
       shell: |
         mkdir /opt/livy
