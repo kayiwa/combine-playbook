@@ -1,0 +1,18 @@
+server {
+    listen 80;
+    server_name {{ ip_address }};
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /opt/combine;
+    }
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/opt/combine/combine.sock;
+    }
+    location /es {
+        proxy_pass http://localhost:9200/;
+    }
+    location /livy {
+        proxy_pass http://0.0.0.0:8998/;
+    }
+}
