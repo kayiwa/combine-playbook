@@ -62,7 +62,7 @@
        shell: /bin/bash
        password: "{{ combine_password | password_hash('sha512') }}"
        update_password: on_create
-    
+
     - import_role:
         name: miniconda
 
