@@ -1,5 +1,7 @@
 ---
 
+ip_address: PUT_IP_ADDRESS_HERE
+
 combine_password: combine
 
 mysql_password: combine

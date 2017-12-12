@@ -28,6 +28,20 @@
         remote_src: yes
       when: combine_installed.stat.exists == False
 
+    - name: Update Combine IP Address in localsettings
+      replace:
+        path: /opt/combine/combine/localsettings.py
+        regexp: '^(APP_HOST\=).*$'
+        replace: '\1{{ ip_address }}'
+      when: combine_installed.stat.exists == False
+
+    - name: Update Elasticsearch IP Address in localsettings
+      replace:
+        path: /opt/combine/combine/localsettings.py
+        regexp: '^(ES_HOST\=).*$'
+        replace: '\1{{ ip_address }}'
+      when: combine_installed.stat.exists == False
+
     - name: Set permissions
       shell: |
         chown -R combine:combine /opt/combine
