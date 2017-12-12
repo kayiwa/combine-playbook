@@ -32,3 +32,9 @@
         dest: /etc/nginx/sites-enabled/combine
         state: link
         force: yes
+      notify: restart nginx
+      when: nginx_installed.stat.exists == False
+
+  - handlers:    
+    - name: reload nginx
+      service: name=nginx state=restarted
