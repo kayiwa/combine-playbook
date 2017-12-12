@@ -11,7 +11,6 @@
 - import_playbook: update-upgrade.yml
 - import_playbook: bootstrap.yml
 - import_playbook: java.yml
-- import_playbook: apache.yml
 - import_playbook: elasticsearch.yml
 - import_playbook: spark.yml
 - import_playbook: ingestion3.yml
@@ -19,3 +18,5 @@
 - import_playbook: hadoop.yml
 - import_playbook: supervisor.yml
 - import_playbook: combine.yml
+- import_playbook: gunicorn.yml
+- import_playbook: nginx.yml
