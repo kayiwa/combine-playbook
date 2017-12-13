@@ -35,6 +35,6 @@
       notify: restart nginx
       when: nginx_installed.stat.exists == False
 
-  - handlers:    
+  handlers:    
     - name: reload nginx
       service: name=nginx state=restarted
