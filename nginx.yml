@@ -36,5 +36,7 @@
       when: nginx_installed.stat.exists == False
 
   - handlers:    
-    - name: reload nginx
-      service: name=nginx state=restarted
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
