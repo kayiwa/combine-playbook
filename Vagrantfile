@@ -14,6 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.memory = 8192
     vb.cpus = 2
     config.vm.network "private_network", ip: "192.168.45.10"
+  end
 
   config.vm.provision :ansible do |ansible|
     ansible.playbook = "playbook.yml"
