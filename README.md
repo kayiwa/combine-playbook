@@ -3,8 +3,8 @@ This repository contains code that will deploy the Aggregator-in-a-box system. T
 
 ## Pre-Installation Notes:
  * This deployment assumes an Ubuntu 16.04 server
- * For either installation, there are host of variables that set default values. They are all found in the all.yml file inside the group_vars folder.
-   * If you are installing this system on a remote server, you MUST update the `ip_address` variable found in all.yml. Change it to your remote server's ip address.
+ * For either installation, there are a host of variables that set default values. They are all found in the `all.yml` file inside the `group_vars` folder.
+   * If you are installing this system on a remote server, you MUST update the `ip_address` variable found in `all.yml`. Change it to your remote server's ip address.
    * If you are installing the system locally with Vagrant, you don't need to do anything. Your server will be available at 192.168.45.10.
 
 
@@ -14,7 +14,7 @@ This repository contains code that will deploy the Aggregator-in-a-box system. T
 
  * Install [VirtualBox](https://www.virtualbox.org/), [Vagrant](https://www.vagrantup.com/), and [Ansible](https://www.ansible.com/), and [Python](https://www.python.org/).
 
- * Clone this repository.
+ * Clone this Github repository.
 
  * Navigate to the repository in your favorite terminal/shell/command line interface.
 
@@ -30,7 +30,7 @@ This repository contains code that will deploy the Aggregator-in-a-box system. T
    ```
  * This installation will take a while. The command you just ran initializes the vagrant tool to manage the installation process. It will first download and install a copy of Ubuntu Linux (v.16.04) on your VirtualBox VM. Then, it will configure your networking to allow SSH access through an account called `vagrant` and make the server available only to your local computer at the IP address of 192.168.45.10. After that initial work, the vagrant tool will use ansible to provision (i.e. install all components and dependencies) to a VM on your computer.
 
- * After completed, your server will be available at [http://192.168.45.10](http://192.168.45.10). Navigating to [http://192.168.45.10/admin](http://192.168.45.10/admin) will allow you to setup your system defaults (OAI endpoints, etc). Going to [http://192.168.45.10/combine](http://192.168.45.10/combine) will take you the heart of the application where you can ingest, transform, and analyze metadata. Login using the credentials the following credentials: 
+ * After completed, your server will be available at [http://192.168.45.10](http://192.168.45.10). Navigating to [http://192.168.45.10/admin](http://192.168.45.10/admin) will allow you to setup your system defaults (OAI endpoints, etc). Going to [http://192.168.45.10/combine](http://192.168.45.10/combine) will take you to the heart of the application where you can ingest, transform, and analyze metadata. Login using the credentials the following credentials: 
    ```
    username: combine
    password: combine
@@ -60,7 +60,7 @@ This repository contains code that will deploy the Aggregator-in-a-box system. T
      ```
 
  * Point ansible to remote server. 
-   * You do by creating a file named `hosts` inside the following directory: `/etc/ansible`. Using a Linux or MacOS machine, you should have an `etc` directory, but you will probably have to create the `ansible` folder. Place your server's IP address or FQDN in this `hosts` file. If the username you used to exchange keys with the server is anything other than root, you will have to add `ansible_user=YOUR_USERNAME`. Your hosts file could end up looking something like this: `192.168.45.10 ansible_user=USERNAME`. For more information see: http://docs.ansible.com/ansible/latest/intro_getting_started.html#your-first-commands
+   * You do this by creating a file named `hosts` inside the following directory: `/etc/ansible`. If you are using a Linux or MacOS machine, you should have an `etc` directory, but you will probably have to create the `ansible` folder. Place your server's IP address or FQDN in this `hosts` file. If the username you used to exchange keys with the server is anything other than root, you will have to add `ansible_user=YOUR_USERNAME`. Your hosts file could end up looking something like this: `192.168.45.10 ansible_user=USERNAME`. For more information see: http://docs.ansible.com/ansible/latest/intro_getting_started.html#your-first-commands
 
  * Check your target machine is accessible and ansible is configured by running the following command:
    ```
@@ -75,7 +75,7 @@ This repository contains code that will deploy the Aggregator-in-a-box system. T
      }
      ```
 
- * Clone the Github repository
+ * Clone this Github repository
 
  * Update `ip_address` in `group_vars/all.yml`
    * Change the `ip_address` variable to your remote server's IP address.
@@ -90,9 +90,9 @@ This repository contains code that will deploy the Aggregator-in-a-box system. T
    ansible-playbook playbook.yml
    ```
 
- * This installation will take a while. Ansible provisions the server will all of the necessary components and dependencies.
+ * This installation will take a while. Ansible provisions the server with all of the necessary components and dependencies.
 
- * After completed, your server will be available at your server's IP address. Navigating to `/admin` will allow you to setup your system defaults (OAI endpoints, etc). Going to `/combine` will take you the heart of the application where you can ingest, transform, and analyze metadata. Login using the following credentials: 
+ * After the installation is complete, your server will be ready for you to use Combine's web-based interface. Go to your server's IP address. Navigating to `/admin` will allow you to setup your system defaults (OAI endpoints, etc). Going to `/combine` will take you to the heart of the application where you can ingest, transform, and analyze metadata. Login using the following credentials: 
    ```
    username: combine
    password: combine
