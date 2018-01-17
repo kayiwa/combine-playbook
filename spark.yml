@@ -24,11 +24,13 @@
     - name: Update Apt cache
       apt:
         update_cache: yes
+        force: yes
 
     - name: Install latest version of sbt
       package:
         name: sbt
         state: latest
+        force: yes
 
     - name: Is Spark already installed?
       stat: 

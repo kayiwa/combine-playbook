@@ -30,7 +30,7 @@
 
     - name: Update Combine IP Address in localsettings
       replace:
-        path: /tmp/localsettings.py
+        path: /opt/combine/combine/localsettings.py
         regexp: '^(APP_HOST).*$'
         replace: '\1="{{ ip_address }}"'
       when: combine_installed.stat.exists == False
