@@ -5,11 +5,6 @@
   gather_facts: False
   pre_tasks:
     - raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
-  tasks:
-  - name: 'check ip is null'
-    fail:
-      msg: "Please enter in your IP address in the vars.yml file"
-    when: ip_address == 'PUT_IP_ADDRESS_HERE'
 
 - import_playbook: update-upgrade.yml
 - import_playbook: bootstrap.yml
