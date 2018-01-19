@@ -1,6 +1,6 @@
 ---
 
-ip_address: PUT_IP_ADDRESS_HERE
+ip_address: 192.168.45.10
 
 combine_password: combine
 
@@ -48,8 +48,9 @@ pip_packages:
   - jupyter
   - setuptools
 
-java_package:
-  - openjdk-8-jdk
+java_packages:
+  - oracle-java8-installer
+  - oracle-java8-set-default
 
 elasticsearch_http_port: 9200
 elasticsearch_transport_tcp_port: 9300
