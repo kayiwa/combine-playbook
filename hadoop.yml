@@ -51,7 +51,7 @@
     - name: set JAVA_HOME for hadoop-env.sh, as Ubuntu-installs don't seem to pick env var up automatically
       blockinfile:
         dest: "{{ hadoop_prefix }}/etc/hadoop/hadoop-env.sh"
-        block: export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+        block: export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
       when: hadoop_installed.stat.exists == False
 
     - name: Copy hdfs-site settings
