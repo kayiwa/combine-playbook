@@ -48,9 +48,8 @@ pip_packages:
   - jupyter
   - setuptools
 
-java_packages:
-  - oracle-java8-installer
-  - oracle-java8-set-default
+java_package:
+  - openjdk-8-jdk
 
 elasticsearch_http_port: 9200
 elasticsearch_transport_tcp_port: 9300
