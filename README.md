@@ -1,5 +1,5 @@
-# Aggregator-in-a-box
-This repository contains code that will deploy the Aggregator-in-a-box system. There are two deployment methods explained below. Choose the one that meets your needs. Please be aware that running this system requires not insignificant resources. We recommend at least 8GB of RAM and 2 processor cores devoted to the system. Also of note, if you are looking for the Combine application, this repository will help you deploy it. Combine (a Django app) is the central application for this metadata aggregating and processing framework. It requires other components such as Elasticsearch, Spark, among others, in order to work properly. If you are looking to test-drive or develop on Combine, you have arrived at the right place.
+# Combine Playbook
+This repository contains code that will deploy the ecosystem necessary to run Combine. There are two deployment methods explained below. Choose the one that meets your needs. Please be aware that running this system requires not insignificant resources. We recommend at least 8GB of RAM and 2 processor cores devoted to the system. Combine, at its heart, is a metadata aggregating and processing framework that runs within a software called Django. It requires other components such as Elasticsearch, Spark, among others, in order to work properly. If you are looking to test-drive or develop on Combine, you have arrived at the right place.
 
 ## Pre-Installation Notes:
  * This deployment assumes an Ubuntu 16.04 server
@@ -10,7 +10,7 @@ This repository contains code that will deploy the Aggregator-in-a-box system. T
 
 ## Vagrant-based Installation (local)
 
- * If you are looking to run an instance of the AgBox system on your own computer, you will use the Vagrant-based installation method. This method assumes that you have 8GB of RAM and 2 processor cores available to devote to this system. Double-check and make sure you have this available on your computer. This means you will need MORE than that in RAM and cores in order to not bring your computer to a complete halt. Local testing has been performed on iMacs running MacOS Sierra that have a total of 4 cores and 16 GB of RAM.
+ * If you are looking to run an instance of the Combine ecosystem on your own computer, you will use the Vagrant-based installation method. This method assumes that you have 8GB of RAM and 2 processor cores available to devote to this system. Double-check and make sure you have this available on your computer. This means you will need MORE than that in RAM and cores in order to not bring your computer to a complete halt. Local testing has been performed on iMacs running MacOS Sierra that have a total of 4 cores and 16 GB of RAM.
 
  * Install [VirtualBox](https://www.virtualbox.org/), [Vagrant](https://www.vagrantup.com/), and [Ansible](https://www.ansible.com/), and [Python](https://www.python.org/).
 
