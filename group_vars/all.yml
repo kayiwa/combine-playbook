@@ -6,7 +6,7 @@ combine_password: combine
 
 mysql_password: combine
 
-spark_version: 2.0.1
+spark_version: 2.1.0
 
 livy_version: 0.3.0
 
