@@ -10,11 +10,13 @@
 
     - name: Cloning and building Livy
       shell: |
+        cd /opt
+
         git clone https://github.com/apache/incubator-livy livy
 
         cd livy
 
-        git checkout -b tags/v0.5.0-incubating v0.5.0-incubating
+        git checkout -b tags/{{ livy_tagged_release }} {{ livy_tagged_release }}
 
         mvn package -DskipTests
 

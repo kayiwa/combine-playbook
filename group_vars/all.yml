@@ -10,6 +10,8 @@ spark_version: 2.1.0
 
 livy_version: 0.5.0
 
+livy_tagged_release: v0.5.0-incubating
+
 scala_version: 2.11
 
 hadoop_prefix: /opt/hadoop
