@@ -10,17 +10,11 @@
 
     - name: Installing Livy
       shell: |
-        mkdir /opt/livy
+        git clone https://github.com/apache/incubator-livy livy
 
-        cd /tmp
+        cd livy
 
-        wget https://github.com/cloudera/livy/archive/v{{ livy_version }}.tar.gz
-
-        tar -xvf v{{ livy_version }}.tar.gz
-
-        mv livy-{{ livy_version }}/* /opt/livy
-
-        cd /opt/livy
+        git checkout -b tags/v0.5.0-incubating v0.5.0-incubating
 
         mvn package -DskipTests
 
@@ -50,7 +44,7 @@
         dest: /opt/livy/conf/livy.conf
         block: |
           livy.spark.master = yarn
-          livy.spark.deployMode = cluster
+          livy.spark.deploy-mode = cluster
           livy.impersonation.enabled = true
           livy.file.local-dir-whitelist = /opt/ingestion3/target/scala-{{ scala_version }}/,/opt/combine/core/spark/
           livy.server.recovery.mode = recovery
