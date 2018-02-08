@@ -20,6 +20,8 @@ hadoop_version_short: 2.7
 
 elasticsearch_hadoop_connector_version: 5.6.2
 
+combine_git_branch: dev
+
 basic_packages:
   - openssh-server
   - build-essential
