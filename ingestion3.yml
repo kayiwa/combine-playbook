@@ -16,10 +16,11 @@
 
     - name: Clone Ingestion3 from github repo
       git:
-        repo: 'https://github.com/dpla/ingestion3'
+        repo: 'https://github.com/WSULib/ingestion3'
         dest: /opt/ingestion3
         clone: yes
         update: no
+        version: combine_spark-2.1.0_livy-0.5.0
       when: ingestion3_installed.stat.exists == False
 
     - name: Install ingestion3
