@@ -8,7 +8,7 @@
 
   tasks:
 
-    - name: Installing Livy
+    - name: Cloning and building Livy
       shell: |
         git clone https://github.com/apache/incubator-livy livy
 

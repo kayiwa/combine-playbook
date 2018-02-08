@@ -37,3 +37,19 @@
         group: combine
         recurse: yes
       when: ingestion3_installed.stat.exists == False
+
+    - name: Copy Ingestion3 dependency okhttp-3 to Spark jars
+      copy:
+        src: binaries/okhttp-3.9.1.jar
+        dest: /opt/spark/jars
+        owner: combine
+        group: combine
+        mode: 0664
+
+    - name: Copy Ingestion3 dependency okio to Spark jars
+      copy:
+        src: binaries/okio-1.13.0.jar
+        dest: /opt/spark/jars
+        owner: combine
+        group: combine
+        mode: 0664
