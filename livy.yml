@@ -22,6 +22,10 @@
 
         mkdir logs
 
+        cp conf/livy-env.sh.template conf/livy-env.sh
+
+        cp conf/livy.conf.template conf/livy.conf
+
         chown -R combine:combine /opt/livy
       args:
         executable: /bin/bash
