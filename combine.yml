@@ -18,7 +18,7 @@
       git:
         repo: https://github.com/WSULib/combine.git
         dest: /opt/combine
-        version: {{ combine_git_branch }}
+        version: "{{ combine_git_branch }}"
       when: combine_installed.stat.exists == False
 
     - name: Copy localsettings
