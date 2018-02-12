@@ -3,7 +3,7 @@ server {
     server_name {{ ip_address }};
     location = /favicon.ico { access_log off; log_not_found off; }
     location /static/ {
-        root /opt/combine/core;
+        root /opt/combine;
     }
     location / {
         include proxy_params;
