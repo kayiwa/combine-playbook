@@ -1,6 +1,9 @@
 # Combine Playbook
 This repository contains code that will deploy the ecosystem necessary to run Combine. There are two deployment methods explained below. Choose the one that meets your needs. Please be aware that running this system requires not insignificant resources. We recommend at least 8GB of RAM and 2 processor cores devoted to the system. Combine, at its heart, is a metadata aggregating and processing framework that runs within a software called Django. It requires other components such as Elasticsearch, Spark, among others, in order to work properly. If you are looking to test-drive or develop on Combine, you have arrived at the right place.
 
+## QuickStart walkthrough
+Once you do have an instance of the server up and running, you can find a [QuickStart walkthrough here](https://github.com/WSULib/combine/blob/dev/docs/quickstart.md).
+
 ## Pre-Installation Notes:
  * This deployment assumes an Ubuntu 16.04 server
  * For either installation, there are a host of variables that set default values. They are all found in the `all.yml` file inside the `group_vars` folder.
