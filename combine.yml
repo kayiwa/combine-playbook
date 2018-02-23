@@ -135,6 +135,16 @@
       when: combine_installed.stat.exists == False
 
 
+    - name: Collect static materials for Django
+      shell: |
+        source /usr/local/anaconda/bin/activate combine
+        cd /opt/combine
+        ./manage.py collectstatic
+      args:
+        executable: /bin/bash
+      when: combine_installed.stat.exists == False
+
+
     - name: Make directory that will hold avro files
       file:
         path: /home/combine/data/combine
