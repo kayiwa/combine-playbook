@@ -50,12 +50,8 @@
         dest: /opt/livy/conf/livy.conf
         block: |
           livy.spark.master = local
-          # livy.spark.deploy-mode = cluster
           livy.impersonation.enabled = true
           livy.file.local-dir-whitelist = /opt/ingestion3/target/scala-{{ scala_version }}/,/opt/combine/core/spark/
-          # livy.server.recovery.mode = recovery
-          # livy.server.recovery.state-store = filesystem
-          # livy.server.recovery.state-store.url = hdfs://localhost/livy_sessions
           livy.server.session.timeout = 24h
 
     - name: make a symlink from ingestion3 jar file to a spot in livy application directory
