@@ -24,7 +24,7 @@ Once you do have an instance of the server up and running, you can find a [Quick
  * Install pre-requisites. 
    * While inside the repository root directory, type the following command:
      ```
-     ansible-galaxy install -r requirements.yml
+     ansible-galaxy install -f -c -r requirements.yml
      ```
 
  * Build the system.
@@ -85,7 +85,7 @@ Once you do have an instance of the server up and running, you can find a [Quick
 
  * Install pre-requisites
    ```
-   ansible-galaxy install -r requirements.yml
+   ansible-galaxy install -f -c -r requirements.yml
    ```
 
  * Run ansible playbook
