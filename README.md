@@ -15,7 +15,8 @@ Once you do have an instance of the server up and running, you can find a [Quick
 
  * If you are looking to run an instance of the Combine ecosystem on your own computer, you will use the Vagrant-based installation method. This method assumes that you have 8GB of RAM and 2 processor cores available to devote to this system. Double-check and make sure you have this available on your computer. This means you will need MORE than that in RAM and cores in order to not bring your computer to a complete halt. Local testing has been performed on iMacs running MacOS Sierra that have a total of 4 cores and 16 GB of RAM.
 
- * Install [VirtualBox](https://www.virtualbox.org/), [Vagrant](https://www.vagrantup.com/), and [Ansible](https://www.ansible.com/), and [Python](https://www.python.org/).
+ * Install [VirtualBox](https://www.virtualbox.org/), [Vagrant](https://www.vagrantup.com/), and [Ansible](https://www.ansible.com/), [Python](https://www.python.org/), and [Passlib](https://pypi.python.org/pypi/passlib).
+   * NB: when installing Passlib, you should be able to simply run `pip install passlib` if you have the pip tool installed. If you're not certain or if that command doesn't successfully run, see the following link for instructions on installing Pip: http://www.pythonforbeginners.com/basics/how-to-use-pip-and-pypi.
 
  * Clone this Github repository.
 
@@ -52,7 +53,8 @@ Once you do have an instance of the server up and running, you can find a [Quick
 
  * If you have a remote server that you want to install the system upon, these installation instructions are for you. Your server should already be running Ubuntu 16.04. It needs to be remotely accessible through SSH from your client machine and have at least port 80 accessible. Also, it needs Python 2.7 installed on it. Your server will need at least 8GB of RAM and 2 cores, but more is better.
 
- * Install [ansible](http://docs.ansible.com/ansible/latest/intro_installation.html) on your client machine. This installation method has not been tested using Windows as client machine, and, therefore, we offer no support for running an installation using Windows as a client. For more information, please refer to these Windows-based instructions: http://docs.ansible.com/ansible/latest/intro_windows.html#using-a-windows-control-machine
+ * Install [Ansible](http://docs.ansible.com/ansible/latest/intro_installation.html), [Python](https://www.python.org/), and [Passlib](https://pypi.python.org/pypi/passlib) on your client machine. This installation method has not been tested using Windows as client machine, and, therefore, we offer no support for running an installation using Windows as a client. For more information, please refer to these Windows-based instructions: http://docs.ansible.com/ansible/latest/intro_windows.html#using-a-windows-control-machine
+   * NB: when installing Passlib, you should be able to simply run `pip install passlib` if you have the pip tool installed. If you're not certain or if that command doesn't successfully run, see the following link for instructions on installing Pip: http://www.pythonforbeginners.com/basics/how-to-use-pip-and-pypi.
 
  * Exchange ssh keys with your server. 
    * Example command on MacOS
