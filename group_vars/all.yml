@@ -16,7 +16,7 @@ scala_version: 2.11
 
 hadoop_prefix: /opt/hadoop
 
-hadoop_version: 2.7.4
+hadoop_version: 2.7.5
 
 hadoop_version_short: 2.7
 
