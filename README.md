@@ -108,3 +108,10 @@ Once you do have an instance of the server up and running, you can find a [Quick
    username: combine
    password: combine
    ```
+   
+## Troubleshooting
+
+### Restarting Elasticsearch
+```
+sudo systemctl restart combine_elasticsearch.service
+```
