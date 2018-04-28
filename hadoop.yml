@@ -20,7 +20,7 @@
         
         cd /opt/hadoop
         
-        wget http://apache.spinellicreations.com/hadoop/common/hadoop-{{ hadoop_version }}/hadoop-{{ hadoop_version }}.tar.gz
+        wget https://archive.apache.org/dist/hadoop/core/hadoop-{{ hadoop_version }}/hadoop-{{ hadoop_version }}.tar.gz
         
         tar --strip-components=1 -xvf hadoop-{{ hadoop_version }}.tar.gz
         
