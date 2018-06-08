@@ -65,11 +65,9 @@
         executable: /bin/bash
       when: combine_installed.stat.exists == False
 
-    - name: Install es2csv
-      become_user: combine
+    - name: Install es2csv to OS python 2.x      
       shell: |
-        source /usr/local/anaconda/bin/activate combine
-        pip install git+https://github.com/WSULib/es2csv.git        
+        pip install git+https://github.com/taraslayshchuk/es2csv.git
       args:
         executable: /bin/bash
       when: combine_installed.stat.exists == False
