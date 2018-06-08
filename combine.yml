@@ -65,6 +65,15 @@
         executable: /bin/bash
       when: combine_installed.stat.exists == False
 
+    - name: Install es2csv
+      become_user: combine
+      shell: |
+        source /usr/local/anaconda/bin/activate combine
+        pip install git+https://github.com/WSULib/es2csv.git        
+      args:
+        executable: /bin/bash
+      when: combine_installed.stat.exists == False
+
     - name: Install combine mysql dependency
       package:
         name: libmysql-java
