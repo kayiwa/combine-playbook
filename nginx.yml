@@ -35,6 +35,12 @@
       notify: restart nginx
       when: nginx_installed.stat.exists == False
 
+    - name: Copy custom nginx.conf
+      template: 
+        src: nginx.confg
+        dest: /etc/nginx/nginx.conf
+      when: nginx_installed.stat.exists == False
+
   handlers:    
     - name: restart nginx
       service:
