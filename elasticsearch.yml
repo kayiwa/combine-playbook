@@ -30,6 +30,14 @@
         line: 'path.repo: ["/tmp/es_repo"]'
         owner: elasticsearch
         group: elasticsearch
+        
+    - name: Bump http request size
+      lineinfile:
+        path: /etc/elasticsearch/combine/elasticsearch.yml
+        insertafter: EOF
+        line: 'http.max_initial_line_length: 5m'
+        owner: elasticsearch
+        group: elasticsearch
 
     - name: Restart ElasticSearch
       shell: |
