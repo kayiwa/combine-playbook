@@ -14,6 +14,13 @@
       register: java_installed
       changed_when: java_installed.stat.exists == False
 
+    - name: Purge Java Common
+      shell: |
+        apt purge -y java-common
+      args:
+        executable: /bin/bash
+      when: java_installed.stat.exists == False
+
     - name: install latest version of Java 8
       package:
         name: "{{ item }}"

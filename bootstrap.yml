@@ -40,17 +40,6 @@
       action: service name=mysql state=restarted enabled=true
       when: mysql_config.stat.exists == False
 
-    - name: Easy_install pip
-      easy_install:
-        name: pip
-        state: latest
-
-    - name: pip install
-      pip:
-        name: "{{ item }}"
-        state: latest
-      with_items: "{{ pip_packages }}"
-
     - group:
        name: admin
        state: present

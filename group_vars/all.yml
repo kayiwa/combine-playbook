@@ -25,32 +25,29 @@ elasticsearch_hadoop_connector_version: 5.6.2
 combine_git_branch: dev
 
 basic_packages:
-  - openssh-server
+  - bc
   - build-essential
-  - unzip
+  - curl
+  - git
+  - htop
+  - libmysqlclient-dev
   - libxml2-dev
   - libxslt1-dev
+  - maven
+  - mysql-server
+  - ncdu
+  - openssh-server
   - python-dev
+  - python-mysqldb
+  - python-pip
   - python-setuptools
-  - zlib1g-dev
-  - git
+  - software-properties-common
+  - tree
+  - unzip
   - vim
   - wget
-  - curl
-  - htop
-  - tree
-  - ncdu
-  - mysql-server
-  - libmysqlclient-dev
-  - python-mysqldb
-  - bc
-  - maven
   - zip
-  - python-software-properties
-
-pip_packages:
-  - jupyter
-  - setuptools
+  - zlib1g-dev
 
 java_package:
   - openjdk-8-jdk
