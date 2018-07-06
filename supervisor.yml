@@ -33,7 +33,7 @@
         executable: /bin/bash
       when: supervisor_installed.stat.exists == False
 
-    - name: Make sure the hadoop, livy, and pyjxslt folders exist
+    - name: Make sure logging folders exist
       file:
         path: "/var/log/{{item}}"
         owner: combine
@@ -41,7 +41,7 @@
         mode: 0755
         recurse: yes
         state: directory
-      with_items: ["hadoop", "livy", "pyjxslt"]
+      with_items: ["hadoop", "livy", "pyjxslt", "spark"]
 
 
   handlers:
