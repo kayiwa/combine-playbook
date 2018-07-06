@@ -5,7 +5,7 @@ This repository contains code that will deploy the ecosystem necessary to run Co
 Once you do have an instance of the server up and running, you can find a [QuickStart walkthrough here](https://github.com/WSULib/combine/blob/dev/docs/quickstart.md).
 
 ## Pre-Installation Notes:
- * This deployment assumes an Ubuntu 16.04 server
+ * This deployment assumes an Ubuntu 18.04 server
  * For either installation, there are a host of variables that set default values. They are all found in the `all.yml` file inside the `group_vars` folder.
    * If you are installing this system on a remote server, you MUST update the `ip_address` variable found in `all.yml`. Change it to your remote server's ip address.
    * If you are installing the system locally with Vagrant, you don't need to do anything. Your server will be available at 192.168.45.10.
@@ -32,7 +32,7 @@ Once you do have an instance of the server up and running, you can find a [Quick
    ```
    vagrant up
    ```
- * This installation will take a while. The command you just ran initializes the vagrant tool to manage the installation process. It will first download and install a copy of Ubuntu Linux (v.16.04) on your VirtualBox VM. Then, it will configure your networking to allow SSH access through an account called `vagrant` and make the server available only to your local computer at the IP address of 192.168.45.10. After that initial work, the vagrant tool will use ansible to provision (i.e. install all components and dependencies) to a VM on your computer.
+ * This installation will take a while. The command you just ran initializes the vagrant tool to manage the installation process. It will first download and install a copy of Ubuntu Linux (v.18.04) on your VirtualBox VM. Then, it will configure your networking to allow SSH access through an account called `vagrant` and make the server available only to your local computer at the IP address of 192.168.45.10. After that initial work, the vagrant tool will use ansible to provision (i.e. install all components and dependencies) to a VM on your computer.
 
  * After completed, your server will be available at [http://192.168.45.10](http://192.168.45.10). Navigating to [http://192.168.45.10/admin](http://192.168.45.10/admin) will allow you to setup your system defaults (OAI endpoints, etc). Going to [http://192.168.45.10/combine](http://192.168.45.10/combine) will take you to the heart of the application where you can ingest, transform, and analyze metadata. Login using the credentials the following credentials: 
    ```
@@ -51,7 +51,7 @@ Once you do have an instance of the server up and running, you can find a [Quick
 
 ## Ansible-based Installation (remote server)
 
- * If you have a remote server that you want to install the system upon, these installation instructions are for you. Your server should already be running Ubuntu 16.04. It needs to be remotely accessible through SSH from your client machine and have at least port 80 accessible. Also, it needs Python 2.7 installed on it. Your server will need at least 8GB of RAM and 2 cores, but more is better.
+ * If you have a remote server that you want to install the system upon, these installation instructions are for you. Your server should already be running Ubuntu 18.04. It needs to be remotely accessible through SSH from your client machine and have at least port 80 accessible. Also, it needs Python 2.7 installed on it. Your server will need at least 8GB of RAM and 2 cores, but more is better.
 
  * Install [Ansible](http://docs.ansible.com/ansible/latest/intro_installation.html), [Python](https://www.python.org/), and [Passlib](https://pypi.python.org/pypi/passlib) on your client machine. This installation method has not been tested using Windows as client machine, and, therefore, we offer no support for running an installation using Windows as a client. For more information, please refer to these Windows-based instructions: http://docs.ansible.com/ansible/latest/intro_windows.html#using-a-windows-control-machine
    * NB: when installing Passlib, you should be able to simply run `pip install passlib` if you have the pip tool installed. If you're not certain or if that command doesn't successfully run, see the following link for instructions on installing Pip: http://www.pythonforbeginners.com/basics/how-to-use-pip-and-pypi.
