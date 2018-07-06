@@ -8,6 +8,7 @@
 
 - import_playbook: update-upgrade.yml
 - import_playbook: bootstrap.yml
+- import_playbook: mysql.yml
 - import_playbook: java.yml
 - import_playbook: elasticsearch.yml
 - import_playbook: spark.yml
