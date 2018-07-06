@@ -5,6 +5,8 @@
   become: yes
   gather_facts: true
 
+  tasks:
+    
     - name: Set MySQL root password
       mysql_user: name=root host={{ item }} password={{ mysql_password }} state=present
       with_items:
