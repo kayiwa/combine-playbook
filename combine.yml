@@ -78,6 +78,16 @@
         state: latest
       when: combine_installed.stat.exists == False
 
+    - name: Downgrade pip to 9.0.3
+      become_user: combine
+      shell: |
+        source /usr/local/anaconda/bin/activate combine
+        cd /opt/combine
+        pip install pip==9.0.3
+      args:
+        executable: /bin/bash
+      when: combine_installed.stat.exists == False
+    
     - name: Install Combine requirements
       become_user: combine
       shell: |
