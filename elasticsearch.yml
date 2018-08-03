@@ -44,3 +44,9 @@
         systemctl restart combine_elasticsearch
       args:
         executable: /bin/bash
+
+    - name: Install ElasticSearch-Dump via npm
+      shell: |
+        sudo npm install elasticdump -g
+      args:
+        executable: /bin/bash
