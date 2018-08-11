@@ -113,15 +113,6 @@
       when: combine_installed.stat.exists == False
 
 
-    - name: Manually create additional tables from sql script, not managed by Django
-      mysql_db:
-        config_file: /root/.my.cnf
-        state: import
-        name: combine
-        target: /opt/combine/core/inc/combine_tables_prime.sql
-      when: combine_installed.stat.exists == False
-
-
     - name: Run Database migrations
       become_user: combine
       shell: |
@@ -134,15 +125,6 @@
       when: combine_installed.stat.exists == False
 
     
-    - name: Post Django migration, add Foreign Keys to non-managed tables
-      mysql_db:
-        config_file: /root/.my.cnf
-        state: import
-        name: combine
-        target: /opt/combine/core/inc/combine_add_fks.sql
-      when: combine_installed.stat.exists == False
-
-
     - name: Create superuser
       shell: |
         source /usr/local/anaconda/bin/activate combine

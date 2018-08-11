@@ -11,7 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "bento/ubuntu-18.04"
 
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = 8192
+    vb.memory = 16384
     vb.cpus = 2
     config.vm.network "private_network", ip: "192.168.45.10"
   end
