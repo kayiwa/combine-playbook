@@ -1,0 +1,32 @@
+---
+
+
+- name: mongodb
+  hosts: all
+  become: yes
+  gather_facts: true
+
+  tasks:
+
+    - name: Add MongoDB Package Repository and Install
+      shell: |
+        sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
+        echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.6 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.6.list
+        sudo apt-get -y update
+        sudo apt install -y mongodb-org
+      args:
+        executable: /bin/bash
+
+    - name: Copy custom mongod.conf file
+      template: 
+        src: mongod.conf
+        dest: /etc/mongod.conf
+        owner: root
+        mode: 0655
+
+    - name: Restart and enable on server startup
+      shell: |
+        sudo systemctl restart mongod.service
+        sudo systemctl enable mongod.service
+      args:
+        executable: /bin/bash
