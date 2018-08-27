@@ -112,7 +112,6 @@
         target: /tmp/combine.sql
       when: combine_installed.stat.exists == False
 
-
     - name: Run Database migrations
       become_user: combine
       shell: |
@@ -120,10 +119,10 @@
         python /opt/combine/manage.py makemigrations core
         python /opt/combine/manage.py migrate core
         python /opt/combine/manage.py migrate
+        python /opt/combine/manage.py ensuremongocollections
       args:
         executable: /bin/bash
       when: combine_installed.stat.exists == False
-
     
     - name: Create superuser
       shell: |
@@ -133,7 +132,6 @@
         executable: /bin/bash
       when: combine_installed.stat.exists == False
 
-
     - name: Collect static materials for Django
       shell: |
         source /usr/local/anaconda/bin/activate combine
@@ -142,7 +140,6 @@
       args:
         executable: /bin/bash
       when: combine_installed.stat.exists == False
-
 
     - name: Make directory that will hold avro files
       file:
