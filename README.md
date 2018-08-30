@@ -1,8 +1,28 @@
 # Combine Playbook
-This repository contains code that will deploy the ecosystem necessary to run Combine. There are two deployment methods explained below. Choose the one that meets your needs. Please be aware that running this system requires not insignificant resources. Required is at least 8GB RAM and 2 processor cores for the virtual machine (Todo: alternate provisioning options where more RAM available, to tune Spark settings).  Combine, at its heart, is a metadata aggregating and processing framework that runs within a software called Django. It requires other components such as Elasticsearch, Spark, among others, in order to work properly. If you are looking to test-drive or develop on Combine, you have arrived at the right place.
+This repository contains code that will deploy the ecosystem necessary to run [Combine](https://github.com/WSULib/combine). There are two deployment methods explained below. Choose the one that meets your needs.
+
+Please be aware that running this system requires not insignificant resources. Required is at least 12-16gb RAM and 2+ CPU cores for the fully built server.  This is due in large part to the memory requirements of Apache Spark.
+
+If you are looking to test-drive, install, or develop on [Combine](https://github.com/WSULib/combine), you have arrived at the right place!
 
 ## QuickStart walkthrough
 Once you do have an instance of the server up and running, you can find a [QuickStart walkthrough here](https://github.com/WSULib/combine/blob/dev/docs/quickstart.md).
+
+## Install Tagged Releases:
+For releases, there will be an attempt to pin releases from this [Combine Playbook](https://github.com/WSULib/combine-playbook) repository to the [Combine](https://github.com/WSULib/combine) repository with the same tag.  This is set in `combine_git_branch` setting under `group_vars/all.yml`.  
+
+To build a release, before any steps below, checkout the release/tag of this playbook you are interested in building, e.g.:
+
+```
+# clone playbook repo
+git clone https://github.com/WSULib/combine-playbook
+cd combine-playbook
+
+# checkout v0.1 tag
+git checkout v0.1 
+```
+
+This will then attempt to build the `v0.1` tagged release of [Combine](https://github.com/WSULib/combine).
 
 ## Pre-Installation Notes:
  * This deployment assumes an Ubuntu 18.04 server
@@ -92,7 +112,7 @@ Once you do have an instance of the server up and running, you can find a [Quick
 
  * Run ansible playbook
    ```
-   ansible-playbook playbook.yml
+   ansible-playbook -vvvvv playbook.yml
    ```
 
  * This installation will take a while. Ansible provisions the server with all of the necessary components and dependencies.
