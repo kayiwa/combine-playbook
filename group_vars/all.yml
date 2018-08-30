@@ -22,7 +22,7 @@ hadoop_version_short: 2.7
 
 elasticsearch_hadoop_connector_version: 5.6.2
 
-combine_git_branch: master
+combine_git_branch: v0.1
 
 basic_packages:
   - bc
