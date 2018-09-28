@@ -19,7 +19,21 @@
       ini_file: dest=/etc/mysql/mysql.conf.d/mysqld.cnf 
                 section=mysqld
                 option=bind-address
-                value=0.0.0.0      
+                value=0.0.0.0
+
+    - name: Update my.cnf
+      ini_file: dest=/etc/mysql/my.cnf
+                section=mysqld
+                option=wait_timeout
+                value=31536000
+                state=present
+
+    - name: Update my.cnf
+      ini_file: dest=/etc/mysql/my.cnf
+                section=mysqld
+                option=interactive_timeout
+                value=31536000
+                state=present
 
     - name: Are root credentials for MySQL already there?
       stat:
