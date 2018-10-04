@@ -15,4 +15,5 @@ server {
     location /livy {
         proxy_pass http://0.0.0.0:8998/;
     }
+    rewrite ^/$ /combine redirect;
 }
