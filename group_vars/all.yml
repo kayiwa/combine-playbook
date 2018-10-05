@@ -43,6 +43,7 @@ basic_packages:
   - python-pip
   - python-setuptools
   - software-properties-common
+  - redis
   - tree
   - unzip
   - vim
