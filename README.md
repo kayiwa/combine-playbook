@@ -33,7 +33,7 @@ This will then attempt to build the `v0.1` tagged release of [Combine](https://g
 
 ## Vagrant-based Installation (local)
 
- * If you are looking to run an instance of the Combine ecosystem on your own computer, you will use the Vagrant-based installation method. This method assumes that you have 8GB of RAM and 2 processor cores available to devote to this system. Double-check and make sure you have this available on your computer. This means you will need MORE than that in RAM and cores in order to not bring your computer to a complete halt. Default settings create a VM that uses 4GB of RAM and 2 cores. Local testing has been performed on iMacs running MacOS Sierra that have a total of 4 cores and 16 GB of RAM.
+ * If you are looking to run an instance of the Combine ecosystem on your own computer, you will use the Vagrant-based installation method. This method assumes that you have 4GB of RAM and 2 processor cores available to devote to this system. Double-check and make sure you have this available on your computer. This means you will need MORE than that in RAM and cores in order to not bring your computer to a complete halt. Default settings create a VM that uses 4GB of RAM and 2 cores. Local testing has been performed on iMacs running MacOS Sierra that have a total of 4 cores and 16 GB of RAM.
 
  * Install [VirtualBox](https://www.virtualbox.org/) and [Vagrant](https://www.vagrantup.com/).
 
