@@ -59,3 +59,6 @@ elasticsearch_transport_tcp_port: 9300
 elasticsearch_network_host: 0.0.0.0
 elasticsearch_instance_name: "combine"
 elasticsearch_heap_size: "1024m"
+spark_driver_memory: "spark.driver.memory 2g"
+spark_executor_memory: "spark.executor.memory 2g"
+livy_spark_master: "spark://localhost:7077"

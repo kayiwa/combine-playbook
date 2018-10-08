@@ -11,14 +11,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "bento/ubuntu-18.04"
 
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = 16384
+    vb.memory = 4096
     vb.cpus = 2
     config.vm.network "private_network", ip: "192.168.45.10"
   end
 
-  config.vm.provision :ansible do |ansible|
+  config.vm.provision "ansible_local" do |ansible|
     ansible.playbook = "playbook.yml"
     ansible.verbose = '-vvvvv'
+    ansible.galaxy_role_file = "requirements.yml"
+    ansible.extra_vars = {
+        elasticsearch_heap_size: "512m",
+        spark_driver_memory: "spark.driver.memory 1024m",
+        spark_executor_memory: "#spark.executor.memory 256m",
+        livy_spark_master: "local"
+    }
+
   end
 
   # sets shared dir
