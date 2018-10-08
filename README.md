@@ -41,12 +41,6 @@ This will then attempt to build the `v0.1` tagged release of [Combine](https://g
 
  * Navigate to the repository in your favorite terminal/shell/command line interface.
 
- * Install pre-requisites. 
-   * While inside the repository root directory, type the following command:
-     ```
-     ansible-galaxy install -f -c -r requirements.yml
-     ```
-
  * Build the system.
    ```
    vagrant up
