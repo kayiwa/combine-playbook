@@ -18,8 +18,8 @@ To build a release, before any steps below, checkout the release/tag of this pla
 git clone https://github.com/WSULib/combine-playbook
 cd combine-playbook
 
-# checkout v0.1 tag
-git checkout v0.1 
+# checkout v0.3.1 tag
+git checkout v0.3.1 
 ```
 
 This will then attempt to build the `v0.1` tagged release of [Combine](https://github.com/WSULib/combine).
