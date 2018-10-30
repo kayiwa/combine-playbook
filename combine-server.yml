@@ -1,0 +1,6 @@
+---
+- hosts: combine-servers
+  roles:
+    - common
+    - mysql
+    - combine

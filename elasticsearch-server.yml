@@ -1,0 +1,5 @@
+---
+- hosts: elasticsearch-servers
+  roles:
+    - common
+    - elasticsearch-server

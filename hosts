@@ -1,0 +1,8 @@
+[combine-servers]
+combine.example.com
+
+[elasticsearch-servers]
+combine.example.com
+
+[spark-servers]
+combine.example.com

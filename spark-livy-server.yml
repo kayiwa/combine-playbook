@@ -1,0 +1,7 @@
+---
+- hosts: spark-servers
+  roles:
+    - common
+    - java
+    - spark
+    - livy
