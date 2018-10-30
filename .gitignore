@@ -104,4 +104,3 @@ ENV/
 .vagrant
 
 # Ansible Galaxy roles
-roles/

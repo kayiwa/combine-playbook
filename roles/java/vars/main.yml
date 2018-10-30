@@ -1,0 +1,6 @@
+---
+  
+gather_facts: true
+
+java_package:
+  - openjdk-8-jdk
