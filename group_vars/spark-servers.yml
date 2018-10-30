@@ -17,8 +17,6 @@ livy_spark_master: "spark://localhost:7077"
 java_package:
   - openjdk-8-jdk
 
-gather_facts: true
-
 spark_version: 2.1.0
 
 hadoop_version_short: 2.7

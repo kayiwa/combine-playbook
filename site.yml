@@ -2,4 +2,4 @@
 
 - import_playbook: combine-server.yml
 - import_playbook: elasticsearch-server.yml
-- import_playbook: spark-livy-server.yml
+- import_playbook: spark-server.yml
