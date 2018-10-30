@@ -1,8 +1,12 @@
 ---
-- hosts: combine-servers
+- hosts: spark-servers
   pre_tasks:
     - raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
   roles:
     - common
-    - mysql
-    - combine
+    - java
+    - spark
+    - ingestion3
+    - livy
+    - hadoop
+    - supervisor

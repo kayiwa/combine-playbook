@@ -1,27 +1,9 @@
 ---
 become: yes
 
-gather_facts: False
-
 combine_password: combine
 
 mysql_password: combine
-
-spark_version: 2.1.0
-
-livy_version: 0.5.0
-
-livy_tagged_release: v0.5.0-incubating
-
-scala_version: 2.11
-
-hadoop_prefix: /opt/hadoop
-
-hadoop_version: 2.7.5
-
-hadoop_version_short: 2.7
-
-elasticsearch_hadoop_connector_version: 5.6.2
 
 basic_packages:
   - bc
@@ -49,7 +31,3 @@ basic_packages:
   - wget
   - zip
   - zlib1g-dev
-
-spark_driver_memory: "spark.driver.memory 2g"
-spark_executor_memory: "spark.executor.memory 2g"
-livy_spark_master: "spark://localhost:7077"

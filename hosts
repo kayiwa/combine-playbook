@@ -6,3 +6,6 @@ combine.example.com
 
 [spark-servers]
 combine.example.com
+
+[mongo-servers]
+combine.example.com
