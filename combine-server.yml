@@ -7,3 +7,5 @@
     - common
     - mysql
     - combine
+    - gunicorn
+    - nginx

@@ -9,7 +9,7 @@
     - common
     - mysql
     - java
-    - elasticsearch
+    - combine-elasticsearch
     - spark
     - ingestion3
     - livy
