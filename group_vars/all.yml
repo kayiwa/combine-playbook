@@ -33,7 +33,7 @@ combine_password: combine
 
 mysql_password: combine
 
-ip_address: 192.168.2.56
+ip_address: 192.168.45.10:
 
 combine_git_branch: master
 

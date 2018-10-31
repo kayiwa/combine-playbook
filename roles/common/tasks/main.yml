@@ -4,6 +4,10 @@
   # by looking for CentOS or RedHat as a distribution name. This
   # will may also pick up modern OracleLinux but OL has a lot of
   # different strings.
+
+- name: gather facts
+  setup:
+
 - name: .rpm upgrade server
   yum: >
     update_cache=yes
