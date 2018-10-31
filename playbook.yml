@@ -5,18 +5,17 @@
   gather_facts: False
   pre_tasks:
     - raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
-
-- import_playbook: update-upgrade.yml
-- import_playbook: bootstrap.yml
-- import_playbook: mysql.yml
-- import_playbook: java.yml
-- import_playbook: elasticsearch.yml
-- import_playbook: spark.yml
-- import_playbook: ingestion3.yml
-- import_playbook: livy.yml
-- import_playbook: hadoop.yml
-- import_playbook: mongo.yml
-- import_playbook: supervisor.yml
-- import_playbook: combine.yml
-- import_playbook: gunicorn.yml
-- import_playbook: nginx.yml
+  roles:
+    - common
+    - mysql
+    - java
+    - elasticsearch
+    - spark
+    - ingestion3
+    - livy
+    - hadoop
+    - mongo
+    - supervisor
+    - combine
+    - gunicorn
+    - nginx
