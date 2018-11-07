@@ -1,0 +1,6 @@
+---
+
+- import_playbook: elasticsearch-server.yml
+- import_playbook: mongo-server.yml
+- import_playbook: spark-server.yml
+- import_playbook: combine-server.yml

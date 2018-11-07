@@ -1,21 +1,13 @@
 ---
-
-- hosts: all
-  become: yes
-  gather_facts: False
+- hosts: spark-servers
   pre_tasks:
     - raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+  become: true
   roles:
     - common
-    - mysql
     - java
-    - combine-elasticsearch
     - spark
     - ingestion3
     - livy
     - hadoop
-    - mongo
     - supervisor
-    - combine
-    - gunicorn
-    - nginx

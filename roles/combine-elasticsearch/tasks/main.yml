@@ -1,0 +1,29 @@
+---
+
+- name: Add repository path to ElasticSearch yaml
+  lineinfile:
+    path: /etc/elasticsearch/combine/elasticsearch.yml
+    insertafter: EOF
+    line: 'path.repo: ["/tmp/es_repo"]'
+    owner: elasticsearch
+    group: elasticsearch
+
+- name: Bump http request size
+  lineinfile:
+    path: /etc/elasticsearch/combine/elasticsearch.yml
+    insertafter: EOF
+    line: 'http.max_initial_line_length: 5m'
+    owner: elasticsearch
+    group: elasticsearch
+
+- name: Restart ElasticSearch
+  shell: |
+    systemctl restart combine_elasticsearch
+  args:
+    executable: /bin/bash
+
+- name: Install ElasticSearch-Dump via npm
+  shell: |
+    sudo npm install elasticdump -g
+  args:
+    executable: /bin/bash
