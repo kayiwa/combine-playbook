@@ -11,7 +11,7 @@ Once you do have an instance of the server up and running, you can find a [Quick
 ## Install Tagged Releases:
 For releases, there will be an attempt to pin releases from this [Combine Playbook](https://github.com/WSULib/combine-playbook) repository to the [Combine](https://github.com/WSULib/combine) repository with the same tag.  This is set in `combine_git_branch` setting under `group_vars/all.yml`.  
 
-To build a release, before any steps below, checkout the release/tag of this playbook you are interested in building, e.g.:
+To build a release, before any steps below, checkout the [release/tag](https://github.com/WSULib/combine-playbook/releases) of this playbook you are interested in building and note the release number like `v0.3.1` or `v0.4`.  For example, to build version `v0.3.1`, do the following:
 
 ```
 # clone playbook repo
@@ -22,7 +22,7 @@ cd combine-playbook
 git checkout v0.3.1 
 ```
 
-This will then attempt to build the `v0.1` tagged release of [Combine](https://github.com/WSULib/combine).
+This will then attempt to build the `v0.3.1` tagged release of [Combine](https://github.com/WSULib/combine).
 
 ## Pre-Installation Notes:
  * This deployment assumes an Ubuntu 18.04 server
