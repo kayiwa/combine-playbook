@@ -48,7 +48,7 @@
     block: |
       livy.spark.master = {{ livy_spark_master }}
       livy.impersonation.enabled = true
-      livy.file.local-dir-whitelist = /opt/ingestion3/target/scala-{{ scala_version }}/,/opt/combine/core/spark/,/usr/share/java/
+      livy.file.local-dir-whitelist = /opt/ingestion3/target/scala-{{ scala_version }}/,/opt/combine/core/spark/,/opt/combine/core/,/usr/share/java/
       livy.server.session.timeout = 24h
 
 - name: make a symlink from ingestion3 jar file to a spot in livy application directory
