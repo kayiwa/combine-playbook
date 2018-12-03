@@ -31,7 +31,7 @@
 
 - name: Download Spark
   get_url:
-    url: "https://d3kbcqa49mib13.cloudfront.net/spark-{{ spark_version }}-bin-hadoop{{ hadoop_version_short }}.tgz"
+    url: "https://archive.apache.org/dist/spark/spark-{{ spark_version }}/spark-{{ spark_version }}-bin-hadoop{{ hadoop_version_short }}.tgz"
     dest: /tmp/spark.tgz
     mode: 0775
   when: spark_installed.stat.exists == False
