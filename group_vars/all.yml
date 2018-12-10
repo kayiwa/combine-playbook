@@ -38,7 +38,7 @@ ip_address: 192.168.45.10
 combine_git_branch: master
 
 
-#Spark server vars
+#server versions
 livy_version: 0.5.0
 
 livy_tagged_release: v0.5.0-incubating
@@ -48,10 +48,6 @@ hadoop_prefix: /opt/hadoop
 hadoop_version: 2.7.5
 
 elasticsearch_hadoop_connector_version: 5.6.2
-
-spark_driver_memory: "spark.driver.memory 2g"
-
-spark_executor_memory: "spark.executor.memory 2g"
 
 livy_spark_master: "spark://localhost:7077"
 
@@ -64,9 +60,40 @@ hadoop_version_short: 2.7
 
 scala_version: 2.11
 
+#Spark server vars
+spark_driver_memory: "spark.driver.memory 2g"
+
+spark_executor_memory: "spark.executor.memory 2g"
+
+spark_host: 'localhost'
+
+spark_port: 8080
+
+spark_application_root_port: 4040
+
+#spark tuning
+spark_max_workers: 1
+jdbc_numpartitions: 200
+spark_repartition: 200
+mongo_read_partition_size_mb: 4
+
+#livy server vars
+livy_host: 'localhost'
+livy_port: 8998
+
 #Elasticsearch server vars
+elasticsearch_host: 'localhost'
 elasticsearch_http_port: 9200
 elasticsearch_transport_tcp_port: 9300
 elasticsearch_network_host: 0.0.0.0
 elasticsearch_instance_name: "combine"
 elasticsearch_heap_size: "1024m"
+
+#DPLA vars
+dpla_record_match_query: True
+dpla_api_key: null
+
+#AWS vars
+aws_access_key_id: null
+aws_secret_access_key:  null
+dpla_s3_bucket: 'dpla-provider-export'
