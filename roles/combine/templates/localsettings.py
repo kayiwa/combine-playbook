@@ -5,11 +5,11 @@ COMBINE_INSTALL_PATH = '/opt/combine'
 
 
 # Combine Front-End
-APP_HOST = {{ ip_address }}
+APP_HOST = '{{ip_address}}'
 
 
 # Spark Cluster Information
-SPARK_HOST = {{spark_host}}
+SPARK_HOST = '{{spark_host}}'
 SPARK_PORT = {{spark_port}}
 SPARK_APPLICATION_ROOT_PORT = {{spark_application_root_port}} # if taken, will automatically increment +100 from here until open port is found
 
@@ -26,8 +26,8 @@ MONGO_READ_PARTITION_SIZE_MB = {{mongo_read_partition_size_mb}}
 Combine uses Livy to issue spark statements.
 Livy provides a stateless pattern for interacting with Spark, and by proxy, DPLA code.
 '''
-LIVY_HOST = {{livy_host}}
-LIVY_PORT = {{live_port}}
+LIVY_HOST = '{{livy_host}}'
+LIVY_PORT = {{livy_port}}
 LIVY_DEFAULT_SESSION_CONFIG = {
     'kind':'pyspark',
     'jars':[
@@ -69,7 +69,7 @@ WRITE_AVRO = False
 
 
 # ElasicSearch server
-ES_HOST = {{elasticsearch_host}}
+ES_HOST = '{{elasticsearch_host}}'
 INDEX_TO_ES = True
 
 
@@ -110,13 +110,13 @@ COMBINE_DATABASE = {
 
 # DPLA API
 DPLA_RECORD_MATCH_QUERY = {{dpla_record_match_query}}
-DPLA_API_KEY = {{dpla_api_key}}
+DPLA_API_KEY = '{{dpla_api_key}}'
 
 
 # AWS S3 Credentials
-AWS_ACCESS_KEY_ID = {{aws_access_key_id}}
-AWS_SECRET_ACCESS_KEY = {{aws_secret_access_key}}
-DPLA_S3_BUCKET = {{dpla_s3_bucket}}
+AWS_ACCESS_KEY_ID = '{{aws_access_key_id}}'
+AWS_SECRET_ACCESS_KEY = '{{aws_secret_access_key}}'
+DPLA_S3_BUCKET = '{{dpla_s3_bucket}}'
 
 
 # Analysis Jobs Org and Record Group

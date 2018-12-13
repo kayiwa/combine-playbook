@@ -1,11 +1,11 @@
 [combine-servers]
-combine.int.leblibrary.com
+combine.example.com
 
 [elasticsearch-servers]
-combine.int.leblibrary.com
+combine.example.com
 
 [spark-servers]
-combine.int.leblibrary.com
+combine.example.com
 
 [mongo-servers]
-combine.int.leblibrary.com
+combine.example.com
