@@ -29,7 +29,7 @@ basic_packages:
 
 #combine server vars
 
-combine_password: combine
+ssh_password: combine
 
 mysql_password: combine
 
