@@ -31,7 +31,7 @@ basic_packages:
 
 ssh_password: combine
 
-mysql_password: combine
+mysql_root_password: combine
 
 django_combine_user_password: combine
 
