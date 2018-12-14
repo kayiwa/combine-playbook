@@ -13,26 +13,17 @@
     version: "{{ combine_git_branch }}"
   when: combine_installed.stat.exists == False
 
-- name: Copy localsettings
-  copy:
-    src: /opt/combine/combine/localsettings.py.template
+- name: Add localsettings.py
+  template:
+    src: localsettings.py
     dest: /opt/combine/combine/localsettings.py
-    remote_src: yes
-  when: combine_installed.stat.exists == False
-
-- name: Update Combine IP Address in localsettings
-  replace:
-    path: /opt/combine/combine/localsettings.py
-    regexp: '^(APP_HOST).*$'
-    replace: '\1="{{ ip_address }}"'
-  when: combine_installed.stat.exists == False
 
 - name: Set permissions
-  shell: |
-    chown -R combine:combine /opt/combine
-  args:
-    executable: /bin/bash
-  when: combine_installed.stat.exists == False
+  file:
+    path: /opt/combine
+    recurse: yes
+    owner: combine
+    group: combine
 
 - name: install latest version of libkrb5-dev
   package:
