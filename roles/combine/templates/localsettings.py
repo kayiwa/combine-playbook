@@ -1,5 +1,10 @@
 from django.conf import settings
 
+
+# Deployment type
+COMBINE_DEPLOYMENT = 'server'
+
+
 # Combine Install Location
 COMBINE_INSTALL_PATH = '/opt/combine'
 
@@ -19,6 +24,7 @@ SPARK_MAX_WORKERS = {{spark_max_workers}}
 JDBC_NUMPARTITIONS = {{jdbc_numpartitions}}
 SPARK_REPARTITION = {{spark_repartition}}
 MONGO_READ_PARTITION_SIZE_MB = {{mongo_read_partition_size_mb}}
+TARGET_RECORDS_PER_PARTITION = 5000
 
 
 # Apache Livy settings
@@ -148,3 +154,7 @@ to preserve, so /tmp is not ideal here.
 '''
 STATEIO_EXPORT_DIR = '/home/combine/data/combine/stateio/exports'
 STATEIO_IMPORT_DIR = '/home/combine/data/combine/stateio/imports'
+
+
+# Mongo server
+MONGO_HOST = '127.0.0.1'
