@@ -38,7 +38,7 @@ django_combine_user_password: combine
 ip_address: 192.168.45.10
 
 
-combine_git_branch: master
+combine_git_branch: v0.7.1
 
 
 #server versions
