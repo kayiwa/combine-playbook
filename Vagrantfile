@@ -24,7 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         elasticsearch_heap_size: "512m",
         spark_driver_memory: "spark.driver.memory 1024m",
         spark_executor_memory: "#spark.executor.memory 256m",
-        livy_spark_master: "local"
+        livy_spark_master: "local[*]"
     }
 
   end
