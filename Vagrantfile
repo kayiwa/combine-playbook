@@ -22,8 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.galaxy_role_file = "requirements.yml"
     ansible.extra_vars = {
         elasticsearch_heap_size: "512m",
-        spark_driver_memory: "spark.driver.memory 1024m",
-        spark_executor_memory: "#spark.executor.memory 256m",
+        spark_driver_memory: "spark.driver.memory 2048m", # suggested 2048m+ for larger sets, which requires bumping vb.memory above as well from 4096 (4gb) to 6144 (6gb)
         livy_spark_master: "local[*]"
     }
 
