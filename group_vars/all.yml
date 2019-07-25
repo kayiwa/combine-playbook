@@ -14,10 +14,10 @@ basic_packages:
   - npm
   - ncdu
   - openssh-server
-  - python-dev
-  - python-mysqldb
-  - python-pip
-  - python-setuptools
+  - python3-dev
+  - python3-mysqldb
+  - python3-pip
+  - python3-setuptools
   - software-properties-common
   - redis
   - tree
@@ -35,16 +35,17 @@ mysql_root_password: combine
 
 django_combine_user_password: combine
 
-ip_address: 192.168.45.10
+ip_address: 10.236.86.136
+#ip_address: 192.168.45.10
 
 
-combine_git_branch: master
+combine_git_branch: staging
 
 
 #server versions
-livy_version: 0.5.0
+livy_version: 0.6.0
 
-livy_tagged_release: v0.5.0-incubating
+livy_tagged_release: v0.6.0-incubating
 
 hadoop_prefix: /opt/hadoop
 

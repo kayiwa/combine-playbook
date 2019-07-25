@@ -1,12 +1,6 @@
 ---
-
-- name: Set MySQL root password
-  mysql_user: name=root host={{ item }} password={{ mysql_root_password }} state=present
-  with_items:
-    - "{{ ansible_hostname }}"
-    - 127.0.0.1
-    - ::1
-    - localhost
+- pip:
+    name: PyMySQL
 
 - name: Change MySQL bind address
   ini_file: dest=/etc/mysql/mysql.conf.d/mysqld.cnf
@@ -40,8 +34,16 @@
     dest: /root/.my.cnf
     owner: root
     mode: 0600
-  when: mysql_config.stat.exists == False
+#  when: mysql_config.stat.exists == False
 
 - name: Restart MySQL
   action: service name=mysql state=restarted enabled=true
-  when: mysql_config.stat.exists == False
+#  when: mysql_config.stat.exists == False
+
+- name: Set MySQL root password
+  mysql_user: name=root host={{ item }} password={{ mysql_root_password }} state=present
+  with_items:
+    - "{{ ansible_hostname }}"
+    - 127.0.0.1
+    - ::1
+    - localhost

@@ -56,7 +56,7 @@
 - name: Is miniconda installed already?
   stat: path=/usr/local/anaconda/bin/conda
   register: conda_package
-  changed_when: conda_package.stat.exists == False
+  # changed_when: conda_package.stat.exists == False
 
 
 - name: Configure miniconda

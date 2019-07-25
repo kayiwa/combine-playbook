@@ -11,13 +11,12 @@
     name: nginx
     state: latest
     update_cache: yes
-  when: nginx_installed.stat.exists == False
+#  when: nginx_installed.stat.exists == False
 
 - name: Copy the combine.nginx file to the Nginx application folder
   template:
     src: combine.nginx
     dest: /etc/nginx/sites-available/combine
-  when: nginx_installed.stat.exists == False
 
 - name: make a symlink from sites-available/combine vhost file to sites-enabled
   file:
@@ -26,10 +25,8 @@
     state: link
     force: yes
   notify: restart nginx
-  when: nginx_installed.stat.exists == False
 
 - name: Copy custom nginx.conf
   template:
     src: nginx.conf
     dest: /etc/nginx/nginx.conf
-  when: nginx_installed.stat.exists == False

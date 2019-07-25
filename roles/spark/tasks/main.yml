@@ -34,34 +34,34 @@
     url: "https://archive.apache.org/dist/spark/spark-{{ spark_version }}/spark-{{ spark_version }}-bin-hadoop{{ hadoop_version_short }}.tgz"
     dest: /tmp/spark.tgz
     mode: 0775
-  when: spark_installed.stat.exists == False
+#  when: spark_installed.stat.exists == False
 
 - name: Unpackage Spark
   unarchive:
     src: /tmp/spark.tgz
     dest: /tmp
     remote_src: yes
-  when: spark_installed.stat.exists == False
+#  when: spark_installed.stat.exists == False
 
 - name: Move Spark to correct directory
   command: mv /tmp/spark-{{ spark_version }}-bin-hadoop{{ hadoop_version_short }} /opt/spark
   args:
     creates: /opt/spark
     removes: /tmp/spark-{{ spark_version }}-bin-hadoop{{ hadoop_version_short }}
-  when: spark_installed.stat.exists == False
+#  when: spark_installed.stat.exists == False
 
 - name: Copy Spark settings
   template:
     src: spark-defaults.conf
     dest: /opt/spark/conf/spark-defaults.conf
-  when: spark_installed.stat.exists == False
+#  when: spark_installed.stat.exists == False
 
 - name: Let combine user use spark commands
   lineinfile:
     path: /home/combine/.bashrc
     line: "export SPARK_HOME=/opt/spark"
     state: present
-  when: spark_installed.stat.exists == False
+#  when: spark_installed.stat.exists == False
 
 - name: Give combine user ownership over spark directory
   file:
@@ -69,4 +69,4 @@
     owner: combine
     group: combine
     recurse: yes
-  when: spark_installed.stat.exists == False
+#  when: spark_installed.stat.exists == False

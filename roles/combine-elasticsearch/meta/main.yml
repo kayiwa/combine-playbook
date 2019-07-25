@@ -1,10 +1,15 @@
 ---
 
 dependencies:
-  - { role: elasticsearch,
+  - {
+    role: elasticsearch,
     es_config: {
         http.port: "{{ elasticsearch_http_port }}",
         transport.tcp.port: "{{ elasticsearch_transport_tcp_port }}",
         network.host: "{{ elasticsearch_network_host }}",
-        }
+        discovery.seed_hosts: "{{ elasticsearch_network_host }}",
+        },
+    vars: {
+        es_allow_downgrades: true
+    }
     }

@@ -13,7 +13,7 @@
     clone: yes
     update: no
     version: a490e5007a43d6732660fbf59b811ad507c8a219
-  when: ingestion3_installed.stat.exists == False
+#  when: ingestion3_installed.stat.exists == False
 
 - name: Install ingestion3
   shell: |
@@ -21,7 +21,7 @@
     sbt package
   args:
     executable: /bin/bash
-  when: ingestion3_installed.stat.exists == False
+#  when: ingestion3_installed.stat.exists == False
 
 - name: Give combine user ownership over Ingestion3 directory
   file:
@@ -29,7 +29,7 @@
     owner: combine
     group: combine
     recurse: yes
-  when: ingestion3_installed.stat.exists == False
+#  when: ingestion3_installed.stat.exists == False
 
 - name: Copy Ingestion3 dependency okhttp-3 to Spark jars
   copy:

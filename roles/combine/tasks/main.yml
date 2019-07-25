@@ -11,7 +11,7 @@
     repo: https://github.com/WSULib/combine.git
     dest: /opt/combine
     version: "{{ combine_git_branch }}"
-  when: combine_installed.stat.exists == False
+#  when: combine_installed.stat.exists == False
 
 - name: Add localsettings.py
   template:
@@ -29,7 +29,7 @@
   package:
     name: libkrb5-dev
     state: latest
-  when: combine_installed.stat.exists == False
+#  when: combine_installed.stat.exists == False
 
 - name: Install Livy Client
   become_user: combine
@@ -39,20 +39,20 @@
     python setup.py install
   args:
     executable: /bin/bash
-  when: combine_installed.stat.exists == False
+#  when: combine_installed.stat.exists == False
 
 - name: Install es2csv to OS python 2.x
   shell: |
     pip install git+https://github.com/WSULib/es2csv.git
   args:
     executable: /bin/bash
-  when: combine_installed.stat.exists == False
+#  when: combine_installed.stat.exists == False
 
 - name: Install combine mysql dependency
   package:
     name: libmysql-java
     state: latest
-  when: combine_installed.stat.exists == False
+#  when: combine_installed.stat.exists == False
 
 - name: Downgrade pip to 9.0.3
   become_user: combine
@@ -62,7 +62,7 @@
     pip install pip==9.0.3
   args:
     executable: /bin/bash
-  when: combine_installed.stat.exists == False
+#  when: combine_installed.stat.exists == False
 
 - name: Install Combine requirements
   become_user: combine
@@ -72,13 +72,13 @@
     pip install -r requirements.txt
   args:
     executable: /bin/bash
-  when: combine_installed.stat.exists == False
+#  when: combine_installed.stat.exists == False
 
 - name: Copy the combine.sql file to tmp
   template:
     src: combine.sql
     dest: /tmp/combine.sql
-  when: combine_installed.stat.exists == False
+#  when: combine_installed.stat.exists == False
 
 - name: Prepare Combine Database
   mysql_db:
@@ -86,7 +86,7 @@
     state: import
     name: all
     target: /tmp/combine.sql
-  when: combine_installed.stat.exists == False
+#  when: combine_installed.stat.exists == False
 
 - name: Run Database migrations
   become_user: combine
@@ -98,7 +98,7 @@
     python /opt/combine/manage.py ensuremongocollections
   args:
     executable: /bin/bash
-  when: combine_installed.stat.exists == False
+#  when: combine_installed.stat.exists == False
 
 - name: Create superuser
   shell: |
@@ -106,7 +106,7 @@
     echo "from django.contrib.auth.models import User; User.objects.create_superuser('combine'"," 'root@none.com'"," '{{ django_combine_user_password }}')" | python /opt/combine/manage.py shell
   args:
     executable: /bin/bash
-  when: combine_installed.stat.exists == False
+#  when: combine_installed.stat.exists == False
 
 - name: Collect static materials for Django
   shell: |
@@ -115,7 +115,7 @@
     ./manage.py collectstatic
   args:
     executable: /bin/bash
-  when: combine_installed.stat.exists == False
+#  when: combine_installed.stat.exists == False
 
 - name: Make directory that will hold avro files
   file:
@@ -125,11 +125,11 @@
     mode: 0755
     recurse: yes
     state: directory
-  when: combine_installed.stat.exists == False
+#  when: combine_installed.stat.exists == False
 
 - name: Set permissions
   shell: |
     chown -R combine:combine /opt/combine
   args:
     executable: /bin/bash
-  when: combine_installed.stat.exists == False
+#  when: combine_installed.stat.exists == False

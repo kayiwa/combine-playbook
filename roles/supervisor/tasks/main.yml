@@ -10,20 +10,20 @@
   package:
     name: supervisor
     state: latest
-  when: supervisor_installed.stat.exists == False
+#  when: supervisor_installed.stat.exists == False
 
 - name: Copy the supervisord.conf file to tmp
   template:
     src: supervisord.conf
     dest: /etc/supervisor/supervisord.conf
   notify: restart supervisor
-  when: supervisor_installed.stat.exists == False
+#  when: supervisor_installed.stat.exists == False
 
 - name: Make combine user owner of supervisor folder
   shell: chown -R combine:combine /opt/hadoop
   args:
     executable: /bin/bash
-  when: supervisor_installed.stat.exists == False
+#  when: supervisor_installed.stat.exists == False
 
 - name: Make sure logging folders exist
   file:

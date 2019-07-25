@@ -98,7 +98,7 @@ This will then attempt to build the `v0.3.1` tagged release of [Combine](https:/
  * Update `ip_address` in `group_vars/all.yml`
    * Change the `ip_address` variable to your remote server's IP address.
 
- * Install pre-requisites
+ * Install pre-requisites (NOTE: You may need to make sure the roles are being installed in the repository's `roles` directory with `... -p ./roles ...`)
    ```
    ansible-galaxy install -f -c -r requirements.yml
    ```
