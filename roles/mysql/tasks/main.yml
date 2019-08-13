@@ -40,8 +40,24 @@
   action: service name=mysql state=restarted enabled=true
 #  when: mysql_config.stat.exists == False
 
+- debug:
+    var: mysql_root_password
+
+- debug:
+    var: mysql_config
+
 - name: Set MySQL root password
-  mysql_user: name=root host={{ item }} password={{ mysql_root_password }} state=present
+  become: yes
+  become_user: root
+  mysql_user:
+    name: root
+    host: "{{ item }}"
+    password: "{{ mysql_root_password }}"
+    state: present
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
+    #login_unix_socket: /var/run/mysql/mysqld.sock
+    check_implicit_admin: true
   with_items:
     - "{{ ansible_hostname }}"
     - 127.0.0.1

@@ -31,6 +31,23 @@
     or
     ansible_distribution == 'Ubuntu'
 
+# We need to set the mysql root password before installing it
+- name: Specify MySQL root password before installing
+  debconf:
+    name: "mysql-server"
+    question: "mysql-server/root_password"
+    value: "{{mysql_root_password | quote}}"
+    vtype: "password"
+  become: true
+
+- name: Confirm MySQL root password before installing
+  debconf:
+    name: "mysql-server"
+    question: "mysql-server/root_password_again"
+    value: "{{mysql_root_password | quote}}"
+    vtype: "password"
+  become: true
+
 # from bootstrap.yml
 - name: install latest version of a series of packages
   package:
@@ -63,7 +80,7 @@
   shell: |
     /usr/local/anaconda/bin/conda config --set always_yes yes
     /usr/local/anaconda/bin/conda config --add channels conda-forge
-    /usr/local/anaconda/bin/conda create -n combine python=3.5
+    /usr/local/anaconda/bin/conda create -n combine python=3.7
     chown -R combine:combine /usr/local/anaconda/envs/combine
     source /usr/local/anaconda/bin/activate combine
   args:

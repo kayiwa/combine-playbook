@@ -35,8 +35,9 @@ mysql_root_password: combine
 
 django_combine_user_password: combine
 
-ip_address: 10.236.86.136
+#ip_address: 10.236.86.136
 #ip_address: 192.168.45.10
+ip_address: 3.224.93.5
 
 
 combine_git_branch: staging

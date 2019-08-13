@@ -18,6 +18,11 @@
     src: combine.nginx
     dest: /etc/nginx/sites-available/combine
 
+- name: remove symlink to nginx default site in sites-enabled
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+
 - name: make a symlink from sites-available/combine vhost file to sites-enabled
   file:
     src: /etc/nginx/sites-available/combine

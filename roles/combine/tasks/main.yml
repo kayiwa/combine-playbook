@@ -35,15 +35,15 @@
   become_user: combine
   shell: |
     source /usr/local/anaconda/bin/activate combine
-    cd /opt/livy/python-api
-    python setup.py install
+    pip install livy
   args:
     executable: /bin/bash
 #  when: combine_installed.stat.exists == False
 
 - name: Install es2csv to OS python 2.x
   shell: |
-    pip install git+https://github.com/WSULib/es2csv.git
+    source /usr/local/anaconda/bin/activate combine
+    pip install git+https://github.com/MI-DPLA/es2csv.git@python3
   args:
     executable: /bin/bash
 #  when: combine_installed.stat.exists == False
@@ -64,6 +64,13 @@
     executable: /bin/bash
 #  when: combine_installed.stat.exists == False
 
+- name: chown the whole conda env
+  become: yes
+  shell: |
+    chown -R combine /usr/local/anaconda/envs/combine
+  args:
+    executable: /bin/bash
+
 - name: Install Combine requirements
   become_user: combine
   shell: |
@@ -72,13 +79,13 @@
     pip install -r requirements.txt
   args:
     executable: /bin/bash
-#  when: combine_installed.stat.exists == False
+  when: combine_installed.stat.exists == False
 
 - name: Copy the combine.sql file to tmp
   template:
     src: combine.sql
     dest: /tmp/combine.sql
-#  when: combine_installed.stat.exists == False
+  when: combine_installed.stat.exists == False
 
 - name: Prepare Combine Database
   mysql_db:
@@ -86,7 +93,7 @@
     state: import
     name: all
     target: /tmp/combine.sql
-#  when: combine_installed.stat.exists == False
+  when: combine_installed.stat.exists == False
 
 - name: Run Database migrations
   become_user: combine
@@ -98,7 +105,7 @@
     python /opt/combine/manage.py ensuremongocollections
   args:
     executable: /bin/bash
-#  when: combine_installed.stat.exists == False
+  when: combine_installed.stat.exists == False
 
 - name: Create superuser
   shell: |
@@ -106,7 +113,7 @@
     echo "from django.contrib.auth.models import User; User.objects.create_superuser('combine'"," 'root@none.com'"," '{{ django_combine_user_password }}')" | python /opt/combine/manage.py shell
   args:
     executable: /bin/bash
-#  when: combine_installed.stat.exists == False
+  when: combine_installed.stat.exists == False
 
 - name: Collect static materials for Django
   shell: |
@@ -115,7 +122,7 @@
     ./manage.py collectstatic
   args:
     executable: /bin/bash
-#  when: combine_installed.stat.exists == False
+  when: combine_installed.stat.exists == False
 
 - name: Make directory that will hold avro files
   file:
@@ -125,7 +132,7 @@
     mode: 0755
     recurse: yes
     state: directory
-#  when: combine_installed.stat.exists == False
+  when: combine_installed.stat.exists == False
 
 - name: Set permissions
   shell: |
