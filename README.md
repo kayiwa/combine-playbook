@@ -124,6 +124,21 @@ This will then attempt to build the `v0.3.1` tagged release of [Combine](https:/
    
 ## Troubleshooting
 
+### Livy/Spark not working
+
+If the Livy logs include errors like this:
+```
+19/08/19 11:43:30 ERROR rsc.RSCClient: Failed to connect to context.
+```
+check for an error like this:
+```
+19/08/19 11:21:25 INFO utils.LineBufferedStream: 2019-08-19 11:21:25 WARN  RSCConf:146 - Your hostname, [blahblahblah], resolves to a loopback address, but we couldn't find any external IP address!
+```
+If you find that, add the hostname to `/etc/hosts`:
+```
+127.0.0.1 localhost blahblahblah blahblah_ip
+```
+
 ### Restarting Elasticsearch
 ```
 sudo systemctl restart combine_elasticsearch.service
