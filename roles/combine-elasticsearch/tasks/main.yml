@@ -20,6 +20,7 @@
   copy:
     src: /etc/elasticsearch/elasticsearch.yml
     dest: /etc/elasticsearch/combine/elasticsearch.yml
+    remote_src: yes
   when: combine_es_yaml.stat.exists == False
 
 - name: Add repository path to ElasticSearch yaml
@@ -30,11 +31,22 @@
     owner: elasticsearch
     group: elasticsearch
 
-- name: Bump http request size
-  lineinfile:
+- name: Set custom Combine es config
+  blockinfile:
     path: /etc/elasticsearch/combine/elasticsearch.yml
     insertafter: EOF
-    line: 'http.max_initial_line_length: 5m'
+    block: 'http.max_initial_line_length: 5m
+discovery.seed_hosts: 0.0.0.0
+http.port: 9200
+network.host: 0.0.0.0
+node.master: true
+node.name: combine_es
+transport.tcp.port: 9300
+
+
+cluster.name: elasticsearch
+cluster.initial_master_nodes:
+            - combine_es'
     owner: elasticsearch
     group: elasticsearch
 
