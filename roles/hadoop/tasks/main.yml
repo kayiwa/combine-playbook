@@ -90,7 +90,7 @@
 
 - name: Download Hadoop-Elasticsearch Connector
   get_url:
-    url: "http://download.elastic.co/hadoop/elasticsearch-hadoop-{{ elasticsearch_hadoop_connector_version }}.zip"
+    url: "https://artifacts.elastic.co/downloads/elasticsearch-hadoop/elasticsearch-hadoop-{{ elasticsearch_hadoop_connector_version }}.zip"
     dest: /tmp/hadoop-es.zip
     #when: hadoop_installed.stat.exists == False
 

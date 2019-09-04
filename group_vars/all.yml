@@ -52,7 +52,7 @@ hadoop_prefix: /opt/hadoop
 
 hadoop_version: 2.7.5
 
-elasticsearch_hadoop_connector_version: 5.6.2
+elasticsearch_hadoop_connector_version: 7.2.1
 
 livy_spark_master: "local[*]"
 
