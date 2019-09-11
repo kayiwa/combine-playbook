@@ -141,5 +141,9 @@ If you find that, add the hostname to `/etc/hosts`:
 
 ### Restarting Elasticsearch
 ```
-sudo systemctl restart combine_elasticsearch.service
+sudo systemctl restart elasticsearch.service
 ```
+
+### Transforms failing
+
+If your XSLT transforms are failing with an error like `NoneType has no such method 'transform'`, double-check that any includes inside your transform XSLT use correct locations. This is particularly important to check if you have imported any transformations that used local includes.

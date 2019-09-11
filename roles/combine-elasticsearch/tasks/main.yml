@@ -52,7 +52,7 @@ cluster.initial_master_nodes:
 
 - name: Restart ElasticSearch
   shell: |
-    systemctl restart combine_elasticsearch
+    systemctl restart elasticsearch
   args:
     executable: /bin/bash
 
