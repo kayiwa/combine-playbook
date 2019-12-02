@@ -104,3 +104,6 @@ ENV/
 .vagrant
 
 # Ansible Galaxy roles
+#
+#
+.idea/
