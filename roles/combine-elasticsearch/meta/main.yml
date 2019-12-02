@@ -7,11 +7,12 @@ dependencies:
         http.port: "{{ elasticsearch_http_port }}",
         transport.tcp.port: "{{ elasticsearch_transport_tcp_port }}",
         network.host: "{{ elasticsearch_network_host }}",
-        discovery.seed_hosts: "{{ elasticsearch_network_host }}",
         node.name: "combine_es",
         node.master: true
         },
     vars: {
-        es_allow_downgrades: true
+        es_allow_downgrades: true,
+        es_enable_xpack: false,
+        es_path_conf: /etc/elasticsearch/combine/elasticsearch.yml
     }
     }
