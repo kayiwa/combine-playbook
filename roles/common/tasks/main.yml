@@ -30,6 +30,8 @@
     ansible_distribution == 'Debian'
     or
     ansible_distribution == 'Ubuntu'
+  environment:
+    es_path_conf: /etc/elasticsearch/combine/elasticsearch.yml
 
 # We need to set the mysql root password before installing it
 - name: Specify MySQL root password before installing

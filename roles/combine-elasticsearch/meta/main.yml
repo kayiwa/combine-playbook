@@ -12,7 +12,6 @@ dependencies:
         },
     vars: {
         es_allow_downgrades: true,
-        es_enable_xpack: false,
-        es_path_conf: /etc/elasticsearch/combine/elasticsearch.yml
+        es_enable_xpack: false
     }
     }
