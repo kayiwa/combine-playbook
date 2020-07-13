@@ -16,6 +16,7 @@
 #  when: ingestion3_installed.stat.exists == False
 
 - name: Install ingestion3
+  become: true
   shell: |
     cd /opt/ingestion3
     sbt package
